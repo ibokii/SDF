@@ -1,10 +1,10 @@
-from django.contrib.auth import login
-from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
-from django.views import View
-from .forms import CreateAccountForm, EmailAuthenticationForm
-from django.contrib.auth.views import LoginView
-from django.contrib.auth import logout
+from django.contrib.auth import login  # type: ignore
+from django.http import HttpResponseRedirect  # type: ignore
+from django.shortcuts import render, redirect  # type: ignore
+from django.views import View  # type: ignore
+from .forms import CreateAccountForm, EmailAuthenticationForm  # type: ignore
+from django.contrib.auth.views import LoginView  # type: ignore
+from django.contrib.auth import logout  # type: ignore
 
 
 class MyLoginView(LoginView):
