@@ -1,6 +1,8 @@
 asgiref==3.6.0
-Django==4.1.6
-mypy==1.0.0
+crispy-bootstrap4==2022.1
+Django==4.1.7
+django-crispy-forms==2.0
+mypy==1.0.1
 mypy-extensions==1.0.0
 psycopg2==2.9.5
 sqlparse==0.4.3

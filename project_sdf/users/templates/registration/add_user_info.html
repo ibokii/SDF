@@ -1,0 +1,21 @@
+{% extends 'registration/login.html' %}
+{% block title%}Add Info{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content%}
+<form style="border:1px solid #ccc" method="post">
+    {% csrf_token %}
+    <div class="container">
+        <h1>User infomatiom</h1>
+        <p>Please fill in this form.</p>
+        <hr>
+        {% crispy form %}
+       
+        <div class="clearfix">
+            <button type="submit" class="signupbtn">Add</button>
+            <button type="button" class="cancelbtn">Cancel</button>
+        </div>
+    </div>
+    
+</form>
+{% endblock %}
