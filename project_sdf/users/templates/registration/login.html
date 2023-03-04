@@ -14,7 +14,7 @@
 <form  method="post">
 	{% csrf_token %}
 	<div class="imgcontainer">
-		<img src="{% static 'img/avatar.png' %}" alt="Avatar" class="avatar">
+		<img src="{% static 'img/avatar.jpg' %}" alt="Avatar" class="avatar">
 	</div>
 
 	<div class="container">
@@ -29,7 +29,7 @@
 	</div>
 
 	<div class="container" style="background-color:#f1f1f1">
-		<button type="button" class="cancelbtn">Cancel</button>
+		<a href="/"><button type="button" class="cancelbtn">Cancel</button></a>
 		<span class="psw">Forgot <a href="#">password?</a></span>
 	</div>
 </form>

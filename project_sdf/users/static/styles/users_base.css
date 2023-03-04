@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
 html{
   height: 100%;
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,16 +16,22 @@ body {
   background: url(../img/coats-furs_us.jpeg) no-repeat center center fixed;
   background-color: #888888;
   background-size: 100%;
-  backdrop-filter: blur(10px);
+  background-size: cover;
+  background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 form {
-  border: 3px solid #f8f7f7;
+  border: 3px solid #d8b4fa;
+  border-radius: 10px;
   width: 40%;
-  background-color: #f1f1f1;
+  background-color: rgba(252, 247, 247, 0.5);
+}
+
+input {
+  border-radius: 10px;
 }
 
 input[type=text],
@@ -63,6 +71,7 @@ button:hover {
 
 img.avatar {
   width: 20%;
+  height: 20%;
   border-radius: 50%;
 }
 

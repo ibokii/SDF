@@ -1,13 +1,17 @@
-from django.db import models
-from django.contrib.auth.models import User
+from django.db import models  # type: ignore
+from django.contrib.auth.models import User  # type: ignore
 
 
 class ExtendUser(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	company = models.CharField(max_length=100)
-	job_title = models.CharField(max_length=100)
+	company = models.CharField(max_length=100, default='1')
+	job_title = models.CharField(max_length=100, default='1')
+	first_name = models.CharField(max_length=100, default='1')
+	last_name = models.CharField(max_length=100, default='1')
 
 	object = models.Manager()
+
+	USERNAME_FIELD = 'username'
 
 	class Meta:
 		verbose_name = "Extend User"
@@ -16,5 +20,3 @@ class ExtendUser(models.Model):
 	def __str__(self):
 		return self.user.__str__()
 
-	def __repr__(self):
-		return f'Note object: {self.user.__str__()}'
