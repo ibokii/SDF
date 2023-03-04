@@ -1,0 +1,162 @@
+{% extends 'home.html' %}
+{% load crispy_forms_tags %}
+{% block title %}My projects{% endblock title %}
+
+<body>
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon"></span>
+                        <span class="title">SDF</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/home">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="title">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="folder-open-outline"></ion-icon></span>
+                        <span class="title">My projects</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="arrow-forward-circle"></ion-icon></span>
+                        <span class="title">PLUG</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="arrow-forward-circle"></ion-icon></span>
+                        <span class="title">PLUG</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="arrow-forward-circle"></ion-icon></span>
+                        <span class="title">PLUG</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="arrow-forward-circle"></ion-icon></span>
+                        <span class="title">PLUG</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="arrow-forward-circle"></ion-icon></span>
+                        <span class="title">PLUG</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="arrow-forward-circle"></ion-icon></span>
+                        <span class="title">PLUG</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="arrow-forward-circle"></ion-icon></span>
+                        <span class="title">PLUG</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/logout">
+                        <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                        <span class="title">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- main -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+                <!-- search -->
+                <div class="search">
+                    <label>
+                        <input type="text" placeholder="Search here">
+                        <ion-icon name="search"></ion-icon>
+                    </label>
+                </div>
+                <!-- userImg-->
+                <div class="user">
+                    <img src="/../static/img/avatar.jpg" alt="user">
+                </div>
+            </div>
+            {% block content%}
+            <div class="headBox">
+              <div class="cardHeader">
+                <h2>Projects:</h2>
+                <a href="/create-project/" class="btn">+ Create new</a>
+              </div>
+            </div>
+            <div class="projectsField">
+                <div class="projects">
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Name</td>
+                                <td>Type</td>
+                                <td>Create date</td>
+                                <td>Status</td>
+                                <td>Setting</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for p in projects %}
+                            <tr>
+                                <td><a href="/my-projects/{{p.id}}/board/">{{p.project_title}}</a></td>
+                                <td>{{p.project_type}}</td>
+                                <td>{{p.create_date}}</td>
+                                <td><span class="status active">Active</span></td>
+                                <td><a href="#2" class="btnSetting"><ion-icon name="settings-outline"></ion-icon></a></td>
+                            </tr>
+                            
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <script>
+        // MenuToggle
+        let toggle = document.querySelector('.toggle');
+        let navigation = document.querySelector('.navigation');
+        let main = document.querySelector('.main');
+
+        toggle.onclick = function(){
+            navigation.classList.toggle('active');
+            main.classList.toggle('active')
+        }
+
+        // add hovered class in selected list item
+        let list = document.querySelectorAll('.navigation li')
+        function activeLink(){
+            list.forEach((item) =>
+            item.classList.remove('hovered'));
+            this.classList.add('hovered');
+        }
+        list.forEach((item) =>
+        item.addEventListener('mouseover', activeLink));
+    </script>
+
+</body>
+
