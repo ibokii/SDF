@@ -1,0 +1,18 @@
+{% extends 'home.html' %}
+{% load crispy_forms_tags %}
+{% block content %}<div class="headBox">
+	<div class="cardHeader">
+		<h2>Edit project:</h2>
+	</div>
+</div>
+<div class="projectsField">
+	<div class="projects">
+		<form method="post">
+			{% csrf_token %}
+			{% crispy form %}
+			<a href="/my-projects/"><button type="button" class="cancelbtn">Cancel</button></a>
+		</form>
+	</div>
+</div>
+
+{% endblock %}

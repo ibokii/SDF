@@ -69,6 +69,8 @@ class Task(models.Model):
 	create_date = models.DateField(auto_now_add=True, verbose_name='Create date')
 	update_date = models.DateField(auto_now=True, verbose_name='Update date')
 	due_date = models.DateField(verbose_name='Due date', null=True, blank=True)
+	task_creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='leading_task',
+									 verbose_name='Creator')
 	assigned_to = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='assigned_tasks')
 
 	objects = models.Manager()

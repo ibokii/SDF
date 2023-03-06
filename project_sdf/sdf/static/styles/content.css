@@ -67,14 +67,6 @@
   font-weight: 600;
   color: var(--blue);
 }
-.btn {
-  position: relative;
-  padding: 5px 10px;
-  background: var(--blue);
-  text-decoration: none;
-  color: var(--white);
-  border-radius: 6px;
-}
 .details table {
   width: 100%;
   border-collapse: collapse;
@@ -197,20 +189,6 @@ recentCustomers table tr:hover td h4 span {
   color: rgb(91, 0, 128);
 }
 
-.btn {
-  position: relative;
-  padding: 5px 10px;
-  background: rgb(91, 0, 128);
-  text-decoration: none;
-  color: var(--white);
-  border-radius: 6px;
-}
-.btn:hover {
-  background: white;
-  color: rgb(91, 0, 128);
-  border: 1px solid black;
-}
-
 .projectsField table {
   width: 100%;
   border-collapse: collapse;
@@ -225,15 +203,42 @@ recentCustomers table tr:hover td h4 span {
   columns: var(--black1);
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 }
+.projectsField .projects table tr a {
+  color: var(--blue);
+}
 
 .projectsField .projects table tr:last-child {
   border-bottom: none;
 }
+.projectsField .projects form textarea {
+  max-height: 100px;
+}
+/* Create project modal window */
+.mdl {
+  border-radius: 30px;
+}
+.modal-body form input,
+.modal-body form select,
+.modal-body form textarea {
+  border-radius: 30px;
+}
+.modal-body form textarea {
+  max-height: 100px;
+}
+.modal-body form textarea::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
 
+/* Projects table */
 .projectsField .projects tbody tr:hover {
-  background: url('../img/navbarback.jpeg') no-repeat center center fixed;
-  color: var(--white);
+  background: rgba(0, 0, 0, 0.1);
+  color: var(--black1);
   border-bottom: none;
+}
+
+.projectsField .projects tbody tr:hover .btnSetting:hover {
+  background: white;
 }
 
 .projectsField .projects table tr td {
@@ -241,13 +246,13 @@ recentCustomers table tr:hover td h4 span {
 }
 
 .projectsField .projects table tr td:first-child {
-  border-bottom-left-radius: 20px;
-  border-top-left-radius: 20px;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
 }
 
 .projectsField .projects table tr td:last-child {
-  border-bottom-right-radius: 20px;
-  border-top-right-radius: 20px;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
   text-align: end;
 }
 
@@ -256,6 +261,10 @@ recentCustomers table tr:hover td h4 span {
 }
 
 .projectsField .projects table tr td:nth-child(3) {
+  text-align: center;
+}
+
+.projectsField .projects table tr td:nth-child(4) {
   text-align: center;
 }
 
@@ -269,17 +278,14 @@ recentCustomers table tr:hover td h4 span {
 }
 .btnSetting {
   position: relative;
-  margin-right: 10px;
-  padding: 5px 10px;
+  padding: 1px 10px;
   background: rgba(162, 160, 163, 0.3);
   text-decoration: none;
   color: rgb(10, 10, 10);
   border-radius: 6px;
   border: 1px solid rgba(10, 10, 10, 0.2);
 }
-.projectsField .projects tbody tr:hover .btnSetting:hover {
-  background: white;
-}
+
 
 /* Create project form */
 /* input[type=text],
@@ -356,10 +362,10 @@ input[type=] {
   border-radius: 20px;
 }
 .boardField .board .taskBoard::-webkit-scrollbar {
-  width: 0px;
+  width: 0;
   background: transparent;
 }
-.boardField .board .taskBoard .task .graber {
+.boardField .board .taskBoard .task .grabber {
   width: 5px;
   left: 5px;
   top: 5px;
@@ -374,7 +380,7 @@ input[type=] {
   text-overflow: ellipsis;
 }
 .boardField .board .taskBoard .task .iconBx {
-  font-size: 1.3em;
+  font-size: 1.5em;
   color: black;
   bottom: 0;
   left: 0;
@@ -387,12 +393,10 @@ input[type=] {
   position: relative;
   padding: 5px;
 }
-/* .boardField .board .taskBoard .task .summary p {
 
-} */
-.boardField .board .taskBoard .task .viewDetails {
-  bottom: 0;
-}
+/*.boardField .board .taskBoard .task .viewDetails {*/
+/*  bottom: 0;*/
+/*}*/
 
 /* .boardField .board .taskBoard .task:hover {
   cursor: pointer;
@@ -401,24 +405,6 @@ input[type=] {
 /* .boardField .board .taskBoard .task:hover .iconBx {
   color: var(--white);
 } */
-
-
-.btn {
-  position: relative;
-  padding: 5px 10px;
-  background: linear-gradient(rgb(99, 0, 66), rgb(52, 171, 250));
-  text-decoration: none;
-  color: var(--white);
-  border-radius: 6px;
-}
-
-.btn:hover {
-  background: white;
-  color: rgb(91, 0, 128);
-  border: 1px solid black;
-}
-
-
 
 /* media */
 @media (max-width: 991px) {

@@ -1,12 +1,13 @@
 from django.db.models import Q  # type: ignore
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect  # type: ignore
 from django.shortcuts import render, get_object_or_404  # type: ignore
 from django.urls import reverse_lazy  # type: ignore
 from django.views import View
 from django.views.generic import ListView, TemplateView, CreateView  # type: ignore
 from django.contrib.auth.mixins import LoginRequiredMixin  # type: ignore
-from .models import Project, Task, Category  # type: ignore
-from .forms import ProjectForm  # type: ignore
+from django.views.generic.edit import FormMixin, UpdateView, SingleObjectMixin  # type: ignore
+from .models import Project, Task, Category
+from .forms import CreateProjectForm, EditProjectForm
 
 
 class HomeView(LoginRequiredMixin, ListView):
@@ -16,40 +17,54 @@ class HomeView(LoginRequiredMixin, ListView):
 
 	def get_queryset(self):
 		user = self.request.user
-		return Project.objects.filter(
-			Q(project_lead=user) | Q(project_members=user)
-		)
+		queryset = Project.objects.filter(Q(project_lead=user) | Q(project_members=user))
+		print(queryset)
+		return queryset
 
 
-class MyProjectsView(LoginRequiredMixin, ListView):
+class MyProjectsView(LoginRequiredMixin, FormMixin, ListView):
 	model = Project
+	form_class = CreateProjectForm
 	template_name = 'projects.html'
 	context_object_name = 'projects'
+	success_url = '/my-projects/'
 
 	def get_queryset(self):
 		user = self.request.user
-		return Project.objects.filter(
-			Q(project_lead=user) | Q(project_members=user)
-		)
-
-
-class CreateProjectView(LoginRequiredMixin, View):
-	form_class = ProjectForm
-	template_name = 'create_project.html'
-	success_url = '/my-projects/'
-
-	def get(self, request, *args, **kwargs):
-		form = self.form_class()
-		return render(request, self.template_name, {'form': form})
+		queryset = Project.objects.filter(Q(project_lead=user) | Q(project_members=user)).distinct()
+		return queryset
 
 	def post(self, request, *args, **kwargs):
-		form = self.form_class(request.POST)
+		form = self.get_form()
 		if form.is_valid():
 			project = form.save(commit=False)
-			project.project_lead = request.user
+			project.project_lead = self.request.user
 			project.save()
 			return HttpResponseRedirect(self.success_url)
-		return render(request, self.template_name, {'form': form})
+		else:
+			return self.form_invalid(form)
+
+
+class EditProjectView(LoginRequiredMixin, UpdateView):
+	model = Project
+	form_class = EditProjectForm
+	template_name = 'edit_project.html'
+	success_url = '/my-projects/'
+
+	def get_object(self, queryset=None):
+		project_id = self.kwargs.get('project_id')
+		return get_object_or_404(Project, id=project_id)
+
+	def form_valid(self, form):
+		response = super().form_valid(form)
+		print(form)
+		return response
+
+
+def delete_project(request, project_id):
+	instance = get_object_or_404(Project, id=project_id)
+	instance.delete()
+	return HttpResponseRedirect('/my-projects/')
 
 
 class BoarsView(LoginRequiredMixin, TemplateView):
@@ -68,6 +83,3 @@ class BoarsView(LoginRequiredMixin, TemplateView):
 
 def base(request):
 	return render(request, 'base.html', context={})
-
-def board(request):
-	return render(request, 'board.html', context={})

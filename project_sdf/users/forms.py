@@ -1,6 +1,6 @@
-from django import forms
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
-from django.contrib.auth.models import User
+from django import forms  # type: ignore
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm  # type: ignore
+from django.contrib.auth.models import User  # type: ignore
 from .models import ExtendUser
 
 
@@ -35,13 +35,40 @@ class CreateAccountForm(UserCreationForm):
             raise forms.ValidationError('This email address is already in use. Please use a different email address.')
         return email
 
+    widgets = {
+        'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your username.'}),
+        'email': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your email.'}),
+    }
 
-class AddUserInformationForm(UserChangeForm):
-    first_name = forms.CharField(max_length=30, help_text='Required. Enter your first name.')
-    last_name = forms.CharField(max_length=30, help_text='Required. Enter your last name.')
-    company = forms.CharField(max_length=100, help_text='Enter your company name.')
-    job_title = forms.CharField(max_length=100, help_text='Enter your company name.')
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            widget = self.widgets.get(field_name)
+            if widget:
+                field.widget.attrs.update(widget.attrs)
+
+
+class AddUserInformationForm(forms.ModelForm):
+    first_name = forms.CharField(max_length=30)
+    last_name = forms.CharField(max_length=30)
+    company = forms.CharField(max_length=100)
+    job_title = forms.CharField(max_length=100)
 
     class Meta:
         model = ExtendUser
         fields = ('first_name', 'last_name', 'company', 'job_title')
+
+    widgets = {
+        'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your first name.'}),
+        'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your last name.'}),
+        'company': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your company name.'}),
+        'job_title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your company name.'}),
+
+    }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            widget = self.widgets.get(field_name)
+            if widget:
+                field.widget.attrs.update(widget.attrs)

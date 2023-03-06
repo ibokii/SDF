@@ -8,13 +8,13 @@ from django.contrib.auth import logout  # type: ignore
 
 
 class MyLoginView(LoginView):
-    template_name = "login"
+    template_name = "new_login"
     authentication_form = EmailAuthenticationForm
 
 
 class CreateAccountView(View):
     form_class = CreateAccountForm
-    template_name = 'registration/create_account.html'
+    template_name = 'registration/new_create_account.html'
 
     def get(self, request, *args, **kwargs):
         form = self.form_class()
@@ -31,7 +31,7 @@ class CreateAccountView(View):
 
 class AddUserInfoView(View):
     form_class = AddUserInformationForm
-    template_name = 'registration/add_user_info.html'
+    template_name = 'registration/new_add_user_info.html'
 
     def get(self, request, *args, **kwargs):
         form = self.form_class()

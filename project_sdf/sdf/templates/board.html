@@ -4,11 +4,30 @@
 <div class="headBox">
   <div class="cardHeader">
     <h2>Project board:</h2>
-    <a href="/create-project/" class="btn">+ Create new</a>
+    <a href="#" data-bs-toggle="modal" data-bs-target="#createNew" class="btn">+ Create new</a>
   </div>
+  <div class="modal fade" id="createNew" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="NewItem">Create new:</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h1>Create new</h1>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 <div class="boardField">
   {% for c in categories %}
+  <!-- Category field -->
   <div class="board">
     <div class="boardHeader">
       <h2>{{ c.category_title }}</h2>
@@ -16,36 +35,53 @@
     <div class="taskBoard">
         {% for t in tasks %}
         {% if t.task_category_id == c.id %}
+        <!-- Task field -->
         <div class="task">
-          <!-- Button trigger modal -->
-          
-          <!-- Modal -->
-          <div class="modal fade" id="staticBackdrop{{ t.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+          <!--View modal -->
+          <div class="modal fade" id="viewDetails{{ t.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="itemTitle">{{ t.task_summary }}</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <h1>View</h1>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Change modal -->
+          <div class="modal fade" id="changeItem{{ t.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title" id="staticBackdropLabel">{{ t.task_summary }}</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  ...
+                  <h1>Change</h1>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Understood</button>
                 </div>
               </div>
             </div>
           </div>
+
           {% if t.task_type == 'Bug' %}
-          <div class="graber" style="background: red;"></div>
+          <div class="grabber" style="background: red;"></div>
           {% elif t.task_type == 'Story' %}
-          <div class="graber" style="background: rgb(1, 151, 26);"></div>
+          <div class="grabber" style="background: rgb(1, 151, 26);"></div>
           {% elif t.task_type == 'Feature' %}
-          <div class="graber" style="background: rgb(179, 255, 1);"></div>
+          <div class="grabber" style="background: rgb(179, 255, 1);"></div>
           {% else %}
-          <div class="graber" style="background: rgb(17, 0, 255);"></div>
+          <div class="grabber" style="background: rgb(17, 0, 255);"></div>
           {% endif %}
           
           <div style="display: grid; grid-template-rows: 10% 90%;">
@@ -61,10 +97,12 @@
               <div class="summary">
                 <span>{{ t.task_summary }}</span>
               </div>
-              <div style="display: flex; align-items: flex-end; justify-content: flex-end;">
-                <div class="viewDetails">
-                  <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ t.id }}" type="btn"><ion-icon name="eye-outline"></ion-icon></a>
-                </div>
+              <!-- Button trigger modal -->
+              <div style="display: grid; align-items: flex-end; justify-content: flex-end;">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#changeItem{{ t.id }}"
+                             type="btn"><ion-icon name="settings-outline"></ion-icon></a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#viewDetails{{ t.id }}"
+                             type="btn"><ion-icon name="eye-outline"></ion-icon></a>
               </div>
             </div>
             
