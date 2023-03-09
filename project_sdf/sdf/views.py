@@ -1,3 +1,7 @@
+from django.contrib.auth import get_user_model  # type: ignore
+from django.contrib.auth.models import User
+
+from .forms import CreateProjectForm, EditProjectForm
 from django.db.models import Q  # type: ignore
 from django.http import HttpResponseRedirect  # type: ignore
 from django.shortcuts import render, get_object_or_404  # type: ignore
@@ -7,7 +11,6 @@ from django.views.generic import ListView, TemplateView, CreateView  # type: ign
 from django.contrib.auth.mixins import LoginRequiredMixin  # type: ignore
 from django.views.generic.edit import FormMixin, UpdateView, SingleObjectMixin  # type: ignore
 from .models import Project, Task, Category
-from .forms import CreateProjectForm, EditProjectForm
 
 
 class HomeView(LoginRequiredMixin, ListView):
@@ -28,6 +31,11 @@ class MyProjectsView(LoginRequiredMixin, FormMixin, ListView):
 	template_name = 'projects.html'
 	context_object_name = 'projects'
 	success_url = '/my-projects/'
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['users'] = User.objects.all()
+		return context
 
 	def get_queryset(self):
 		user = self.request.user

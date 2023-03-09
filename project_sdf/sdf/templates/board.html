@@ -1,9 +1,9 @@
 {% extends 'home.html' %}
 {% block title %}Board{% endblock title %}
-{% block content%}
+{% block content %}
 <div class="headBox">
   <div class="cardHeader">
-    <h2>Project board:</h2>
+    <h2>Project boards:</h2>
     <a href="#" data-bs-toggle="modal" data-bs-target="#createNew" class="btn">+ Create new</a>
   </div>
   <div class="modal fade" id="createNew" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -23,96 +23,24 @@
       </div>
     </div>
   </div>
-
 </div>
-<div class="boardField">
-  {% for c in categories %}
-  <!-- Category field -->
+<div class="boardContainer">
   <div class="board">
-    <div class="boardHeader">
-      <h2>{{ c.category_title }}</h2>
+    {% for c in categories %}
+    <div class="categoryBoard" id="category{{ c.id }}">
+      <p>{{ c.category_title }}</p>
     </div>
-    <div class="taskBoard">
-        {% for t in tasks %}
-        {% if t.task_category_id == c.id %}
-        <!-- Task field -->
-        <div class="task">
-          <!--View modal -->
-          <div class="modal fade" id="viewDetails{{ t.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-xl">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="itemTitle">{{ t.task_summary }}</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <h1>View</h1>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Change modal -->
-          <div class="modal fade" id="changeItem{{ t.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-xl">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="staticBackdropLabel">{{ t.task_summary }}</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <h1>Change</h1>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {% if t.task_type == 'Bug' %}
-          <div class="grabber" style="background: red;"></div>
-          {% elif t.task_type == 'Story' %}
-          <div class="grabber" style="background: rgb(1, 151, 26);"></div>
-          {% elif t.task_type == 'Feature' %}
-          <div class="grabber" style="background: rgb(179, 255, 1);"></div>
-          {% else %}
-          <div class="grabber" style="background: rgb(17, 0, 255);"></div>
-          {% endif %}
-          
-          <div style="display: grid; grid-template-rows: 10% 90%;">
-            <div style="display: flex; justify-content: space-between; padding: 2px 5px 2px 5px; ">
-              <div>
-                <span>{{ t.due_date }}</span>
-              </div>
-              <div>
-                <span>{{ t.task_status }}</span>
-              </div>
-            </div>
-            <div style="display: grid; grid-template-columns: 9fr 1fr; ">
-              <div class="summary">
-                <span>{{ t.task_summary }}</span>
-              </div>
-              <!-- Button trigger modal -->
-              <div style="display: grid; align-items: flex-end; justify-content: flex-end;">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#changeItem{{ t.id }}"
-                             type="btn"><ion-icon name="settings-outline"></ion-icon></a>
-                <a href="#" data-bs-toggle="modal" data-bs-target="#viewDetails{{ t.id }}"
-                             type="btn"><ion-icon name="eye-outline"></ion-icon></a>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-        {% endif %}  
-        {% endfor %}
-    </div>
+    {% endfor %}
   </div>
-  {% endfor %}
-</div>
+  <div class="navigator">
 
+    <div class="navBoard">
+      {% for c in categories %}
+      <div class="navButton btn-success"><a href="#category{{ c.id }}">{{ c.category_title}}</a></div>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
 {% endblock %}
+

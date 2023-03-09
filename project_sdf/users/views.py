@@ -45,7 +45,7 @@ class AddUserInfoView(View):
             extend_user = form.save(commit=False)
             extend_user.user_id = request.user.id
             extend_user.save()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/home/')
 
         return render(request, self.template_name, {'form': form})
 

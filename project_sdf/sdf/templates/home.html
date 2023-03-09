@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="/../static/styles/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/../static/styles/nav_bar.css">
     <link rel="stylesheet" type="text/css" href="/../static/styles/content.css">
+    <link rel="stylesheet" type="text/css" href="/../static/styles/boards.css">
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'icons/favicon.ico' %}">
     <title>{% block title %}Home{% endblock title %}</title>
 </head>
@@ -41,15 +42,12 @@
 						<span class="title">Sprints</span>
 					</a>
 				</li>
-				<li>
-					<a href="/logout">
-						<span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
-						<span class="title">Logout</span>
-					</a>
-				</li>
 			</ul>
 		</div>
+
+
 		<!-- Main -->
+
 		<div class="main">
 			<div class="topbar">
 				<div class="toggle">
@@ -58,21 +56,48 @@
 				<!-- search -->
 				<div class="search">
 					<label>
-						<input type="text" placeholder="Search here">
+						<input type="text" placeholder="Search here, but later :)">
 						<ion-icon name="search"></ion-icon>
 					</label>
 				</div>
 				<!-- userImg-->
 				<div class="user">
-					<img src="/../static/img/avatar.jpg" alt="user">
+					{% block user_photo %}<img src="{{ user.extend_profile.profile_photo.url }}" alt="user" onclick="dropMenu()"> {% endblock %}
+				</div>
+				<div class="subMenuWrap" id="subMenuId">
+					<div class="subMenu">
+						<div class="userInfo">
+							<img src="{{ user.extend_profile.profile_photo.url }}" alt="image">
+							<h3>{{ user.extend_profile.first_name }}</h3>
+						</div>
+						<hr>
+						<a href="#" class="subMenuLink">
+							<span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+							<p>Edit Profile</p>
+							<span> > </span>
+						</a>
+						<a href="#" class="subMenuLink">
+							<span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+							<p>Settings</p>
+							<span> > </span>
+						</a>
+						<a href="/logout/" class="subMenuLink">
+							<span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+							<p>Logout</p>
+							<span> > </span>
+						</a>
+					</div>
 				</div>
 			</div>
+
+
 			{% block content %}
+
 			<div class="cardBox">
 				<div class="card">
 					<div>
-						<div class="numbers">1.504</div>
-						<div class="cardName">Daily Views</div>
+						<div class="numbers">0</div>
+						<div class="cardName">Dashboard in progress</div>
 					</div>
 					<div class="iconBx">
 						<ion-icon name="eye-outline"></ion-icon>
@@ -80,8 +105,8 @@
 				</div>
 				<div class="card">
 					<div>
-						<div class="numbers">1.504</div>
-						<div class="cardName">Daily Views</div>
+						<div class="numbers">0</div>
+						<div class="cardName">Dashboard in progress</div>
 					</div>
 					<div class="iconBx">
 						<ion-icon name="eye-outline"></ion-icon>
@@ -89,8 +114,8 @@
 				</div>
 				<div class="card">
 					<div>
-						<div class="numbers">1.504</div>
-						<div class="cardName">Daily Views</div>
+						<div class="numbers">0</div>
+						<div class="cardName">Dashboard in progress</div>
 					</div>
 					<div class="iconBx">
 						<ion-icon name="eye-outline"></ion-icon>
@@ -98,115 +123,117 @@
 				</div>
 				<div class="card">
 					<div>
-						<div class="numbers">1.504</div>
-						<div class="cardName">Daily Views</div>
+						<div class="numbers">0</div>
+						<div class="cardName">Dashboard in progress</div>
 					</div>
 					<div class="iconBx">
 						<ion-icon name="eye-outline"></ion-icon>
 					</div>
 				</div>
 			</div>
-            <!-- details list -->
+			<!-- details list -->
 			<div class="details">
 				<div class="recentOrders">
 					<div class="cardHeader">
-						<h2>Recent Orders</h2>
+						<h2>Logs</h2>
 						<a href="#" class="btn">View all</a>
 					</div>
 					<table>
 						<thead>
 						<tr>
 							<td>Name</td>
-							<td>Price</td>
-							<td>Payment</td>
+							<td>User</td>
+							<td></td>
 							<td>Status</td>
 						</tr>
 						</thead>
 						<tbody>
+
 						<tr>
-							<td>Star Refrigerator</td>
-							<td>$1200</td>
-							<td>Paid</td>
-							<td><span class="status delivered">Delivered</span></td>
+							<td>Logger in progress</td>
+							<td></td>
+							<td></td>
+							<td><span class="status delivered">In progress</span></td>
 						</tr>
 						<tr>
-							<td>Star Refrigerator</td>
-							<td>$1200</td>
-							<td>Paid</td>
-							<td><span class="status delivered">Delivered</span></td>
+							<td>Logger in progress</td>
+							<td></td>
+							<td></td>
+							<td><span class="status delivered">In progress</span></td>
 						</tr>
 						<tr>
-							<td>Star Refrigerator</td>
-							<td>$1200</td>
-							<td>Paid</td>
-							<td><span class="status delivered">Delivered</span></td>
+							<td>Logger in progress</td>
+							<td></td>
+							<td></td>
+							<td><span class="status delivered">In progress</span></td>
 						</tr>
 						<tr>
-							<td>Star Refrigerator</td>
-							<td>$1200</td>
-							<td>Paid</td>
-							<td><span class="status delivered">Delivered</span></td>
+							<td>Logger in progress</td>
+							<td></td>
+							<td></td>
+							<td><span class="status delivered">In progress</span></td>
 						</tr>
 						<tr>
-							<td>Star Refrigerator</td>
-							<td>$1200</td>
-							<td>Paid</td>
-							<td><span class="status delivered">Delivered</span></td>
+							<td>Logger in progress</td>
+							<td></td>
+							<td></td>
+							<td><span class="status delivered">In progress</span></td>
 						</tr>
 						<tr>
-							<td>Star Refrigerator</td>
-							<td>$1200</td>
-							<td>Paid</td>
-							<td><span class="status delivered">Delivered</span></td>
+							<td>Logger in progress</td>
+							<td></td>
+							<td></td>
+							<td><span class="status delivered">In progress</span></td>
 						</tr>
 						<tr>
-							<td>Star Refrigerator</td>
-							<td>$1200</td>
-							<td>Paid</td>
-							<td><span class="status delivered">Delivered</span></td>
+							<td>Logger in progress</td>
+							<td></td>
+							<td></td>
+							<td><span class="status delivered">In progress</span></td>
 						</tr>
 						<tr>
-							<td>Star Refrigerator</td>
-							<td>$1200</td>
-							<td>Paid</td>
-							<td><span class="status delivered">Delivered</span></td>
+							<td>Logger in progress</td>
+							<td></td>
+							<td></td>
+							<td><span class="status delivered">In progress</span></td>
+						</tr><tr>
+							<td>Logger in progress</td>
+							<td></td>
+							<td></td>
+							<td><span class="status delivered">In progress</span></td>
+						</tr><tr>
+							<td>Logger in progress</td>
+							<td></td>
+							<td></td>
+							<td><span class="status delivered">In progress</span></td>
+						</tr><tr>
+							<td>Logger in progress</td>
+							<td></td>
+							<td></td>
+							<td><span class="status delivered">In progress</span></td>
 						</tr>
-						<tr>
-							<td>Star Refrigerator</td>
-							<td>$1200</td>
-							<td>Paid</td>
-							<td><span class="status delivered">Delivered</span></td>
-						</tr>
-						<tr>
-							<td>Star Refrigerator</td>
-							<td>$1200</td>
-							<td>Paid</td>
-							<td><span class="status delivered">Delivered</span></td>
-						</tr>
-						<tr>
-							<td>Star Refrigerator</td>
-							<td>$1200</td>
-							<td>Paid</td>
-							<td><span class="status delivered">Delivered</span></td>
-						</tr>
+
 						</tbody>
 					</table>
 				</div>
 				<!-- New Customer -->
 				<div class="recentCustomers">
 					<div class="cardHeader">
-						<h2>Recent Customers</h2>
+						<h2>Users</h2>
 						<a href="#" class="btn">View all</a>
 					</div>
 					<table>
 						<tr>
-							<td width="60px"><div class="imgBx"><img src="/../static/img/avatar.jpg" alt="avatar"></div></td>
-							<td><h4>User1<br><span>Italy</span></h4></td>
+							<td ><div class="imgBx"><img src="/../static/img/bandera.png" alt="avatar"></div></td>
+							<td><h4>Stepan Bandera<br><span>Ukraine mother!</span></h4></td>
 						</tr>
+						<tr>
+
 					</table>
 				</div>
 			</div>
 			{% endblock %}
+
 		</div>
 	</div>
 
@@ -216,8 +243,14 @@
 	<script src="/../static/js/bootstrap.min.js"></script>
 	<script src="/../static/js/jquery.min.js"></script>
 	<script>
-        // MenuToggle
-        let togSideBar = document.querySelector('.toggle');
+			// Dropdown menu
+			let subMenuId = document.getElementById('subMenuId');
+
+			function dropMenu() {
+					subMenuId.classList.toggle("active");
+			}
+			//MenuToggle
+			let togSideBar = document.querySelector('.toggle');
         let navSideBar = document.querySelector('.navigation');
         let main = document.querySelector('.main');
 

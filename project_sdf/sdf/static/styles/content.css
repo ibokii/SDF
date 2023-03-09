@@ -23,11 +23,11 @@
   font-size: 2.5em;
   color: var(--blue);
 }
-  .cardBox .card .cardName {
-    color: var(--black2);
-    font-size: 1.1em;
-    margin-top: 5px;
-  }
+.cardBox .card .cardName {
+  color: var(--black2);
+  font-size: 1.1em;
+  margin-top: 5px;
+}
 .cardBox .card .iconBx {
   font-size: 1.5em;
   color: var(--black2)
@@ -47,12 +47,12 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-gap: 30px;
-  /* margin-top: 10px; */
 }
 .details .recentOrders {
   position: relative;
   display: grid;
-  min-height: 500px;
+  align-content: start;
+  min-height: auto;
   background: var(--white);
   padding: 20px;
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
@@ -116,7 +116,8 @@
 .recentCustomers {
   position: relative;
   display: grid;
-  min-height: 500px;
+  align-content: start;
+  min-height: auto;
   padding: 20px;
   background: var(--white);
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
@@ -137,9 +138,12 @@
   height: 100%;
   object-fit: cover;
 }
+.recentCustomers table tr {
+  display: flex;
+  justify-content: start;
+}
 .recentCustomers table tr:hover {
-  background: var(--blue);
-  color: var(--white);
+  background: rgba(0,0,0,0.08);
 }
 .recentCustomers table tr td {
   padding: 12px 10px;
@@ -153,10 +157,6 @@
   font-size: 14px;
   color: var(--black2);
 }
-recentCustomers table tr:hover td h4 span {
-  color: var(--white);
-}
-
 
 /* My projects page card */
 .projectsField {
@@ -261,11 +261,31 @@ recentCustomers table tr:hover td h4 span {
 }
 
 .projectsField .projects table tr td:nth-child(3) {
-  text-align: center;
+  text-align: end;
 }
 
 .projectsField .projects table tr td:nth-child(4) {
   text-align: center;
+}
+.projectsField .projects table tr td:nth-child(5) {
+  text-align: end;
+}
+.lead {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+.lead img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .status.active {
@@ -301,98 +321,98 @@ input[type=] {
 } */
 
 /* Board styles */
-.headBox {
-  position: relative;
-  width: 100%;
-  padding: 10px 30px;
-  display: grid;
-  grid-gap: 30px;
-}
-.boardHeader {
-  display: flex;
-  padding: 10px;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-.cardHeader h2 {
-  font-weight: 600;
-  color: rgb(91, 0, 128);
-}
-.boardField {
-  position: relative;
-  width: 100%;
-  padding: 23px;
-  display: grid;
-  grid-template-columns: repeat(7, 400px);
-  overflow-x: auto;
-  grid-gap: 30px;
-  scrollbar-width: thin;
-}
-.boardField .board {
-  position: relative;
-  display: grid;
-  height: 600px;
-  background: var(--white);
-  padding: 20px;
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
-}
+/*.headBox {*/
+/*  position: relative;*/
+/*  width: 100%;*/
+/*  padding: 10px 30px;*/
+/*  display: grid;*/
+/*  grid-gap: 30px;*/
+/*}*/
+/*.boardHeader {*/
+/*  display: flex;*/
+/*  padding: 10px;*/
+/*  justify-content: space-between;*/
+/*  align-items: flex-start;*/
+/*}*/
+/*.cardHeader h2 {*/
+/*  font-weight: 600;*/
+/*  color: rgb(91, 0, 128);*/
+/*}*/
+/*.boardField {*/
+/*  position: relative;*/
+/*  width: 100%;*/
+/*  padding: 23px;*/
+/*  display: grid;*/
+/*  grid-template-columns: repeat(7, 400px);*/
+/*  overflow-x: auto;*/
+/*  grid-gap: 30px;*/
+/*  scrollbar-width: thin;*/
+/*}*/
+/*.boardField .board {*/
+/*  position: relative;*/
+/*  display: grid;*/
+/*  height: 600px;*/
+/*  background: var(--white);*/
+/*  padding: 20px;*/
+/*  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);*/
+/*  border-radius: 20px;*/
+/*}*/
 
-.boardField .board .taskBoard {
-  position: relative;
-  display: table-cell;
-  background: rgba(162, 160, 163, 0.3);
-  height: 450px;
-  padding: 10px;
-  box-sizing: border-box;
-  vertical-align: top;
-  overflow-y: scroll;
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
-}
+/*.boardField .board .taskBoard {*/
+/*  position: relative;*/
+/*  display: table-cell;*/
+/*  background: rgba(162, 160, 163, 0.3);*/
+/*  height: 450px;*/
+/*  padding: 10px;*/
+/*  box-sizing: border-box;*/
+/*  vertical-align: top;*/
+/*  overflow-y: scroll;*/
+/*  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);*/
+/*  border-radius: 20px;*/
+/*}*/
 
-/* Task style */
-.boardField .board .taskBoard .task {
-  position: relative;
-  min-height: 150px;
-  background: var(--white);
-  display: flex;  
-  padding: 10px;
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
-}
-.boardField .board .taskBoard::-webkit-scrollbar {
-  width: 0;
-  background: transparent;
-}
-.boardField .board .taskBoard .task .grabber {
-  width: 5px;
-  left: 5px;
-  top: 5px;
-  bottom: 5px;
-  height: auto;   
-}
-.boardField .board .taskBoard .task .summary {
-  width: 280px;
-  height: auto;
-  padding: 5px;
-  overflow-wrap: break-word;
-  text-overflow: ellipsis;
-}
-.boardField .board .taskBoard .task .iconBx {
-  font-size: 1.5em;
-  color: black;
-  bottom: 0;
-  left: 0;
-}
-.boardField .board .taskBoard .task .date {
-  position: relative;
-  padding: 5px;
-}
-.boardField .board .taskBoard .task .status {
-  position: relative;
-  padding: 5px;
-}
+/*!* Task style *!*/
+/*.boardField .board .taskBoard .task {*/
+/*  position: relative;*/
+/*  min-height: 150px;*/
+/*  background: var(--white);*/
+/*  display: flex;  */
+/*  padding: 10px;*/
+/*  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);*/
+/*  border-radius: 20px;*/
+/*}*/
+/*.boardField .board .taskBoard::-webkit-scrollbar {*/
+/*  width: 0;*/
+/*  background: transparent;*/
+/*}*/
+/*.boardField .board .taskBoard .task .grabber {*/
+/*  width: 5px;*/
+/*  left: 5px;*/
+/*  top: 5px;*/
+/*  bottom: 5px;*/
+/*  height: auto;   */
+/*}*/
+/*.boardField .board .taskBoard .task .summary {*/
+/*  width: 280px;*/
+/*  height: auto;*/
+/*  padding: 5px;*/
+/*  overflow-wrap: break-word;*/
+/*  text-overflow: ellipsis;*/
+/*}*/
+/*.boardField .board .taskBoard .task .iconBx {*/
+/*  font-size: 1.5em;*/
+/*  color: black;*/
+/*  bottom: 0;*/
+/*  left: 0;*/
+/*}*/
+/*.boardField .board .taskBoard .task .date {*/
+/*  position: relative;*/
+/*  padding: 5px;*/
+/*}*/
+/*.boardField .board .taskBoard .task .status {*/
+/*  position: relative;*/
+/*  padding: 5px;*/
+/*}*/
 
 /*.boardField .board .taskBoard .task .viewDetails {*/
 /*  bottom: 0;*/

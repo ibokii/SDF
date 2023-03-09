@@ -9,12 +9,10 @@
 	<link rel="icon" type="image/x-icon" href="../static/icons/favicon.ico">
 	<link rel="stylesheet" type="text/css" href="{% static '/styles/sdf_base.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static '/styles/base_button.css' %}">
-	<link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 	<title>{% block title %}SDF{% endblock %}</title>
 </head>
 {% block content %}
 <body>
-	
 	<!-- Navigation bar. -->
 	<div class="topnav">
 		<a class="active" href="/">Home</a>
@@ -22,32 +20,25 @@
 		<a href="#">Contact</a>
 		<a href="#">About</a>
 	</div>
-	
-	<!-- Greetings. Login and registration buttons. -->
-	<div class="left">
-		<a class="text-field">
-			<hr>
-			<p>
-				""? 
-			</p>
-		</a>
-	</div>		
-	<div class="right">
-			<p style="color: black;">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit.
-				Dolorum uecati debitis atque laudantium voluptatem?
-			</p>
-		<div>
-			<a href="/login/">
-				<button class="button">
-					<span class="button-content">LOGIN</span>
-				</button>
-			</a>
+	<div class="text"><span>тут би мало щось бути але я ще не придумав...</span></div>
+	<section>
+		<div class="color"></div>
+		<div class="color"></div>
+		<div class="color"></div>
+		<div class="box">
+			<div class="square" style="--i:0;"></div>
+			<div class="square" style="--i:1;"></div>
+			<div class="square" style="--i:2;"></div>
+			<div class="square" style="--i:3;"></div>
+			<div class="square" style="--i:4;"></div>
+			<div class="container">
+				<h2>Ready to get started?</h2>
+				<a href="/create-account/"><button type="button" class="startBtn">Start</button></a>
+			</div>
 		</div>
-	</div>
-		<!-- </div> -->
+	</section>
 
-	
+
 </body>
 {% endblock %}
 </html>

@@ -55,7 +55,14 @@
 					<td><a href="/my-projects/{{p.id}}/board/">{{p.project_title}}</a></td>
 					<td>{{ p.project_type }}</td>
 					<td>{{ p.create_date }}</td>
-					<td>{{ p.project_lead_id }}</td>
+					<td>
+						<div style="display: inline-flex; justify-content: space-between">
+							<div class="lead">
+								<img src="{{p.project_lead.extend_profile.profile_photo.url }}" alt="avatar">
+							</div>
+							{{ p.project_lead.extend_profile.first_name }} {{ p.project_lead.extend_profile.last_name }}
+						</div>
+					</td>
 					<td><span class="status active">Active</span></td>
 					<td><a href="/my-projects/edit/{{ p.id }}" class="btnSetting">Edit</a></td>
 				</tr>
