@@ -9,10 +9,7 @@
   display: flex;
   justify-content: space-between;
 }
-.cardHeader h2 {
-  font-weight: 600;
-  color: rgb(91, 0, 128);
-}
+
 .boardContainer {
   display: grid;
   justify-content: start;

@@ -1,6 +1,10 @@
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit, Button
 from django import forms  # type: ignore
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm  # type: ignore
 from django.contrib.auth.models import User  # type: ignore
+from django.urls import reverse
+
 from .models import ExtendUser
 
 
@@ -72,3 +76,32 @@ class AddUserInformationForm(forms.ModelForm):
             widget = self.widgets.get(field_name)
             if widget:
                 field.widget.attrs.update(widget.attrs)
+
+
+class EditUserInfoForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.url = reverse("delete_project", args=[self.instance.id])
+        self.helper = FormHelper()
+        self.helper.add_input(Submit('submit', 'Save')),
+        self.helper.add_input(Button(
+            'delete',
+            'Delete',
+            onclick=f'window.location.href="{self.url}"')
+        )
+
+    class Meta:
+        model = ExtendUser
+        fields = ['company', 'job_title', 'first_name', 'last_name', 'profile_photo', 'country', 'city', 'phone_number', 'linkedin_profile', 'git_hub_profile']
+        widgets = {
+            'company': forms.TextInput(attrs={'class': 'form-control'}),
+            'job_title': forms.TextInput(attrs={'class': 'form-control'}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'profile_photo': forms.FileInput(attrs={'class': 'form-control'}),
+            'country': forms.TextInput(attrs={'class': 'form-control'}),
+            'city': forms.TextInput(attrs={'class': 'form-control'}),
+            'phone_number': forms.TextInput(attrs={'class': 'form-control'}),
+            'linkedin_profile': forms.TextInput(attrs={'class': 'form-control'}),
+            'git_hub_profile': forms.TextInput(attrs={'class': 'form-control'}),
+        }

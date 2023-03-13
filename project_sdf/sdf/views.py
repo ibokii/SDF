@@ -1,12 +1,11 @@
 from django.contrib.auth import get_user_model  # type: ignore
-from django.contrib.auth.models import User
-
+from django.contrib.auth.models import User  # type: ignore
 from .forms import CreateProjectForm, EditProjectForm
 from django.db.models import Q  # type: ignore
-from django.http import HttpResponseRedirect  # type: ignore
+from django.http import HttpResponseRedirect, HttpResponse  # type: ignore
 from django.shortcuts import render, get_object_or_404  # type: ignore
 from django.urls import reverse_lazy  # type: ignore
-from django.views import View
+from django.views import View  # type: ignore
 from django.views.generic import ListView, TemplateView, CreateView  # type: ignore
 from django.contrib.auth.mixins import LoginRequiredMixin  # type: ignore
 from django.views.generic.edit import FormMixin, UpdateView, SingleObjectMixin  # type: ignore
@@ -18,10 +17,25 @@ class HomeView(LoginRequiredMixin, ListView):
 	template_name = 'home.html'
 	context_object_name = 'projects'
 
+	def get_context_data(self, **kwargs):
+		user = self.request.user
+		context = super().get_context_data(**kwargs)
+		projects = Project.objects.filter(Q(project_lead=user) | Q(project_members=user)).distinct()
+		context['projects'] = projects.count()
+		context['users'] = User.objects.filter(projects__in=projects).exclude(id=user.id).distinct()
+		context['tasks'] = Task.objects.all()
+		return context
+
+
+class ProjectsListView(LoginRequiredMixin, ListView):
+	model = Project
+	template_name = 'projects_list.html'
+	context_object_name = 'projects'
+
 	def get_queryset(self):
 		user = self.request.user
-		queryset = Project.objects.filter(Q(project_lead=user) | Q(project_members=user))
-		print(queryset)
+		queryset = Project.objects.all()
+		# queryset = Project.objects.filter(Q(project_lead=user) | Q(project_members=user)).order_by('-create_date').distinct()
 		return queryset
 
 
@@ -37,11 +51,6 @@ class MyProjectsView(LoginRequiredMixin, FormMixin, ListView):
 		context['users'] = User.objects.all()
 		return context
 
-	def get_queryset(self):
-		user = self.request.user
-		queryset = Project.objects.filter(Q(project_lead=user) | Q(project_members=user)).distinct()
-		return queryset
-
 	def post(self, request, *args, **kwargs):
 		form = self.get_form()
 		if form.is_valid():
@@ -51,28 +60,6 @@ class MyProjectsView(LoginRequiredMixin, FormMixin, ListView):
 			return HttpResponseRedirect(self.success_url)
 		else:
 			return self.form_invalid(form)
-
-
-class EditProjectView(LoginRequiredMixin, UpdateView):
-	model = Project
-	form_class = EditProjectForm
-	template_name = 'edit_project.html'
-	success_url = '/my-projects/'
-
-	def get_object(self, queryset=None):
-		project_id = self.kwargs.get('project_id')
-		return get_object_or_404(Project, id=project_id)
-
-	def form_valid(self, form):
-		response = super().form_valid(form)
-		print(form)
-		return response
-
-
-def delete_project(request, project_id):
-	instance = get_object_or_404(Project, id=project_id)
-	instance.delete()
-	return HttpResponseRedirect('/my-projects/')
 
 
 class BoarsView(LoginRequiredMixin, TemplateView):
@@ -91,3 +78,29 @@ class BoarsView(LoginRequiredMixin, TemplateView):
 
 def base(request):
 	return render(request, 'base.html', context={})
+
+
+def profile_info(request, pk):
+	project = get_object_or_404(Project, pk=pk)
+	user = get_object_or_404(User, pk=project.project_lead.id)
+	project_count = Project.objects.filter(project_lead=user).count()
+	return render(request, 'profile_info.html', context={'project': project, 'project_count': project_count})
+
+
+def edit_project(request, pk):
+	instance = get_object_or_404(Project, pk=pk)
+	if request.method == 'POST':
+		form = EditProjectForm(request.POST, instance=instance)
+		if form.is_valid():
+			form.save()
+			return HttpResponse(status=204, headers={'HX-Trigger': 'projectsListChanged'})
+	else:
+		form = EditProjectForm(instance=instance)
+	context = {'form': form}
+	return render(request, 'edit_project.html', context)
+
+
+def delete_project(request, project_id):
+	instance = get_object_or_404(Project, id=project_id)
+	instance.delete()
+	return HttpResponseRedirect('/my-projects/')

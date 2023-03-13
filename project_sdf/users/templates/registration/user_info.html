@@ -1,0 +1,39 @@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+<!--<link rel="stylesheet" href="../../static/styles/edit_user_info.css">-->
+
+<div class="profileContainer">
+  <div class="imgContainer">
+    <img src="{{ user.extend_profile.profile_photo.url}}" alt="lead foto">
+  </div>
+  <p class="info FullName">
+    {{ user.extend_profile.first_name }} {{ user.extend_profile.last_name }}
+  </p>
+  <p class="info JobTitle">
+    <i class="fas fa-star"></i>
+    {{ user.extend_profile.job_title }} at {{ user.extend_profile.company }}
+  </p>
+  <p class="info Place">
+    <i class="fas fa-map-marker-alt"></i>
+    {{ user.extend_profile.city }}, {{ user.extend_profile.country }}
+  </p>
+    <div class="postInfo">
+      <p><span></span> Projects</p>
+    </div>
+
+    <div class="socialContainer">
+      {% if user.extend_profile.linkedin_profile != "Unknown" %}
+      <button class="linkedin" onclick="window.open('{{ user.extend_profile.linkedin_profile }}', '_blank')">
+        <i class="fab fa-linkedin"> </i>
+      </button>
+      {% endif %}
+      {% if user.extend_profile.git_hub_profile != "Unknown" %}
+      <button class="github" onclick="window.open('{{ user.extend_profile.git_hub_profile }}', '_blank')">
+        <i class="fab fa-github"> </i>
+      </button>
+      {% endif %}
+      <button class="phone">
+        <i class="fa fa-phone"> </i>
+      </button>
+    </div>
+</div>

@@ -33,7 +33,8 @@
   color: var(--black2)
 }
 .cardBox .card:hover {
-  background: var(--blue);
+  background: linear-gradient(to top, #1db6ee, #450160);
+  transform: scale(1.1);
 }
 .cardBox .card:hover .numbers,
 .cardBox .card:hover .cardName,
@@ -83,20 +84,20 @@
   border-bottom: none;
 }
 .details .recentOrders tbody tr:hover {
-  background: var(--blue);
-  color: var(--white);
+  background: rgba(0,0,0,0.08);
   border-bottom: none;
+  transform: scale(1.02);
 }
 .details .recentOrders table tr td {
   padding: 10px;
 }
 .details .recentOrders table tr td:first-child {
-  border-bottom-left-radius: 20px;
-  border-top-left-radius: 20px;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
 }
 .details .recentOrders table tr td:last-child {
-  border-bottom-right-radius: 20px;
-  border-top-right-radius: 20px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
   text-align: end;
 }
 .details .recentOrders table tr td:nth-child(2) {
@@ -113,7 +114,7 @@
   font-size: 14px;
   font-weight: 500;
 }
-.recentCustomers {
+.recentMembers {
   position: relative;
   display: grid;
   align-content: start;
@@ -123,14 +124,14 @@
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
   border-radius: 20px;
 }
-.recentCustomers .imgBx {
+.recentMembers .imgBx {
   position: relative;
   width: 40px;
   height: 40px;
   border-radius: 50%;
   overflow: hidden;
 }
-.recentCustomers .imgBx img {
+.recentMembers .imgBx img {
   position: absolute;
   top: 0;
   left: 0;
@@ -138,22 +139,24 @@
   height: 100%;
   object-fit: cover;
 }
-.recentCustomers table tr {
+.recentMembers table tr {
   display: flex;
   justify-content: start;
 }
-.recentCustomers table tr:hover {
+.recentMembers table tr:hover {
   background: rgba(0,0,0,0.08);
+  transform: scale(1.02);
+  opacity: 0.9;
 }
-.recentCustomers table tr td {
+.recentMembers table tr td {
   padding: 12px 10px;
 }
-.recentCustomers table tr td h4 {
+.recentMembers table tr td h4 {
   font-size: 16px;
   font-weight: 500;
   line-height: 1.2em;
 }
-.recentCustomers table tr td h4 span {
+.recentMembers table tr td h4 span {
   font-size: 14px;
   color: var(--black2);
 }
@@ -181,12 +184,28 @@
 .cardHeader {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
 }
 
-.cardHeader h2 {
-  font-weight: 600;
-  color: rgb(91, 0, 128);
+.cardHeader .createProjectBtn {
+  outline: none;
+  text-align: center;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(to right, #1db6ee, #450160);
+  border: none;
+  border-radius: 50px;
+  width: 50px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  font-size: 1.9em;
+  letter-spacing: 1px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.cardHeader .createProjectBtn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
 }
 
 .projectsField table {
@@ -197,6 +216,11 @@
 
 .projectsField table thead td {
   font-weight: 600;
+}
+
+.projectsField a {
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .projectsField .projects table tr {
@@ -232,8 +256,9 @@
 
 /* Projects table */
 .projectsField .projects tbody tr:hover {
-  background: rgba(0, 0, 0, 0.1);
-  color: var(--black1);
+  background: rgba(0,0,0,0.08);
+  transform: scale(1.01);
+  opacity: 0.9;
   border-bottom: none;
 }
 
@@ -253,22 +278,27 @@
 .projectsField .projects table tr td:last-child {
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
-  text-align: end;
+  text-align: center;
+  width: 10%;
 }
 
 .projectsField .projects table tr td:nth-child(2) {
-  text-align: end;
+  text-align: center;
+  width: 10%;
 }
 
 .projectsField .projects table tr td:nth-child(3) {
-  text-align: end;
+  text-align: center;
+  width: 15%;
 }
 
 .projectsField .projects table tr td:nth-child(4) {
-  text-align: center;
+  text-align: start;
+  width: 20%;
 }
 .projectsField .projects table tr td:nth-child(5) {
-  text-align: end;
+  text-align: center;
+  width: 10%;
 }
 .lead {
   position: relative;
@@ -306,126 +336,28 @@
   border: 1px solid rgba(10, 10, 10, 0.2);
 }
 
-
 /* Create project form */
-/* input[type=text],
-input[type=password],
-input[type=URL],
-input[type=] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-} */
-
-/* Board styles */
-/*.headBox {*/
-/*  position: relative;*/
-/*  width: 100%;*/
-/*  padding: 10px 30px;*/
-/*  display: grid;*/
-/*  grid-gap: 30px;*/
-/*}*/
-/*.boardHeader {*/
-/*  display: flex;*/
-/*  padding: 10px;*/
-/*  justify-content: space-between;*/
-/*  align-items: flex-start;*/
-/*}*/
-/*.cardHeader h2 {*/
-/*  font-weight: 600;*/
-/*  color: rgb(91, 0, 128);*/
-/*}*/
-/*.boardField {*/
-/*  position: relative;*/
-/*  width: 100%;*/
-/*  padding: 23px;*/
-/*  display: grid;*/
-/*  grid-template-columns: repeat(7, 400px);*/
-/*  overflow-x: auto;*/
-/*  grid-gap: 30px;*/
-/*  scrollbar-width: thin;*/
-/*}*/
-/*.boardField .board {*/
-/*  position: relative;*/
-/*  display: grid;*/
-/*  height: 600px;*/
-/*  background: var(--white);*/
-/*  padding: 20px;*/
-/*  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);*/
-/*  border-radius: 20px;*/
-/*}*/
-
-/*.boardField .board .taskBoard {*/
-/*  position: relative;*/
-/*  display: table-cell;*/
-/*  background: rgba(162, 160, 163, 0.3);*/
-/*  height: 450px;*/
-/*  padding: 10px;*/
-/*  box-sizing: border-box;*/
-/*  vertical-align: top;*/
-/*  overflow-y: scroll;*/
-/*  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);*/
-/*  border-radius: 20px;*/
-/*}*/
-
-/*!* Task style *!*/
-/*.boardField .board .taskBoard .task {*/
-/*  position: relative;*/
-/*  min-height: 150px;*/
-/*  background: var(--white);*/
-/*  display: flex;  */
-/*  padding: 10px;*/
-/*  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);*/
-/*  border-radius: 20px;*/
-/*}*/
-/*.boardField .board .taskBoard::-webkit-scrollbar {*/
-/*  width: 0;*/
-/*  background: transparent;*/
-/*}*/
-/*.boardField .board .taskBoard .task .grabber {*/
-/*  width: 5px;*/
-/*  left: 5px;*/
-/*  top: 5px;*/
-/*  bottom: 5px;*/
-/*  height: auto;   */
-/*}*/
-/*.boardField .board .taskBoard .task .summary {*/
-/*  width: 280px;*/
-/*  height: auto;*/
-/*  padding: 5px;*/
-/*  overflow-wrap: break-word;*/
-/*  text-overflow: ellipsis;*/
-/*}*/
-/*.boardField .board .taskBoard .task .iconBx {*/
-/*  font-size: 1.5em;*/
-/*  color: black;*/
-/*  bottom: 0;*/
-/*  left: 0;*/
-/*}*/
-/*.boardField .board .taskBoard .task .date {*/
-/*  position: relative;*/
-/*  padding: 5px;*/
-/*}*/
-/*.boardField .board .taskBoard .task .status {*/
-/*  position: relative;*/
-/*  padding: 5px;*/
-/*}*/
-
-/*.boardField .board .taskBoard .task .viewDetails {*/
-/*  bottom: 0;*/
-/*}*/
-
-/* .boardField .board .taskBoard .task:hover {
+.createProjectBtn {
+  outline: none;
+  text-align: center;
   cursor: pointer;
-  color: var(--white);
-} */
-/* .boardField .board .taskBoard .task:hover .iconBx {
-  color: var(--white);
-} */
+  color: #fff;
+  background: linear-gradient(to top, #1db6ee, #450160);
+  border: none;
+  border-radius: 50px;
+  width: 150px;
+  height: 50px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: transform 0.3s, opacity 0.3s;
+}
 
+.createProjectBtn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
 /* media */
 @media (max-width: 991px) {
   .cardBox {

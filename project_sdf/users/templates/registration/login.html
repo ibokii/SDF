@@ -1,38 +1,43 @@
 <!DOCTYPE html>
-{% load static %}
-{% load crispy_forms_tags %}
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="{% static 'styles/users_base.css' %}">
-	<title>{% block title%}Login{% endblock %}</title>
+	<link rel="stylesheet" type="text/css" href="/../../static/styles/usersbase.css">
+	<link rel="icon" type="image/x-icon" href="../static/icons/favicon.ico">
+	<title>{% block title %}Login{% endblock %}</title>
 </head>
 <body>
-{% block content %}
-<form  method="post">
-	{% csrf_token %}
-	<div class="imgcontainer">
-		<img src="{% static 'img/avatar.jpg' %}" alt="Avatar" class="avatar">
-	</div>
-
-	<div class="container">
-		{{ form | crispy}}
-		<button type="submit">Login</button>
-		<label>
-			<input type="checkbox" checked="checked" name="remember"> Remember me
-		</label>
-		<label>
-			<p>Don't have an account? Create account <a href="/create-account/" style="color:dodgerblue">Here</a>.</p>
-		</label>
-	</div>
-
-	<div class="container" style="background-color:#f1f1f1">
-		<a href="/"><button type="button" class="cancelbtn">Cancel</button></a>
-		<span class="psw">Forgot <a href="#">password?</a></span>
-	</div>
-</form>
-{% endblock %}
+	<section>
+		<div class="color"></div>
+		<div class="color"></div>
+		<div class="color"></div>
+		<div class="box">
+			<div class="square" style="--i:0;"></div>
+			<div class="square" style="--i:1;"></div>
+			<div class="square" style="--i:2;"></div>
+			<div class="square" style="--i:3;"></div>
+			<div class="square" style="--i:4;"></div>
+			<div class="container">
+				<div class="form">
+					{% block content %}
+					<h2>Login Form</h2>
+					<form method="post">
+						{% csrf_token %}
+						<div class="inputBox">
+							{{ form }}
+						</div>
+						<div class="inputBox">
+							<input type="submit" value="login">
+							<p class="forget">Forgot Password? <a href="#">Click Here</a></p>
+							<p class="forget">Don't have an account? <a href="/create-account/">Create account</a></p>
+						</div>
+					</form>
+					{% endblock %}
+				</div>
+			</div>
+		</div>
+	</section>
 </body>
 </html>

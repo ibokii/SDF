@@ -1,0 +1,17 @@
+{% for p in projects %}
+<tr>
+	<td><a href="/my-projects/{{p.id}}/board/">{{p.project_title}}</a></td>
+	<td>{{ p.project_type }}</td>
+	<td>{{ p.update_date }}</td>
+	<td>
+		<div style="display: inline-flex; justify-content: space-between">
+			<div class="lead">
+				<img src="{{p.project_lead.extend_profile.profile_photo.url }}" alt="avatar">
+			</div>
+			<a hx-get="{% url 'profile_info' pk=p.id %}" hx-target="#dialog">{{ p.project_lead.extend_profile.first_name }} {{ p.project_lead.extend_profile.last_name }}</a>
+		</div>
+	</td>
+	<td><span class="status active">Active</span></td>
+	<td><a hx-get="{% url 'edit_project' pk=p.id %}" hx-target="#dialog" class="btnSetting">Edit</a></td>
+</tr>
+{% endfor %}

@@ -185,6 +185,7 @@ body {
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
+  margin-right: 10px;
 }
 .user img {
   position: absolute;
@@ -203,7 +204,8 @@ body {
   overflow: hidden;
   transition: max-height 0.5s;
   background: var(--white);
-  box-shadow: 1px 7px 25px rgba(0, 0, 0, 0.08);
+  border: 2px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 1px 7px 25px rgba(0, 0, 0, 0.2);
   border-radius: 20px;
   z-index: 99999;
 }
@@ -266,6 +268,9 @@ body {
   object-fit: cover;
 }
 
+.modal-dialog-centered {
+  justify-content: center;
+}
 
 /*  */
 @media (max-width: 991px) {

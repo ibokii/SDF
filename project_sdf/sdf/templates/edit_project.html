@@ -1,18 +1,15 @@
-{% extends 'home.html' %}
 {% load crispy_forms_tags %}
-{% block content %}<div class="headBox">
-	<div class="cardHeader">
-		<h2>Edit project:</h2>
+{% block content %}
+<div class="modal-content mdl">
+	<div class="modal-header">
+		<h5 class="modal-title" id="NewProject">Edit project:</h5>
+		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	</div>
-</div>
-<div class="projectsField">
-	<div class="projects">
-		<form method="post">
+	<div class="modal-body">
+		<form hx-post="{{ request.path }}" method="post">
 			{% csrf_token %}
 			{% crispy form %}
-			<a href="/my-projects/"><button type="button" class="cancelbtn">Cancel</button></a>
 		</form>
 	</div>
 </div>
-
 {% endblock %}

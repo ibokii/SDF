@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
+<link rel="stylesheet" href="../static/styles/profile_info.css">
+{% block content %}
+<!--<div class="modal-content">-->
+<div class="profileContainer modal-content">
+  <div class="imgContainer">
+    <img src="{{project.project_lead.extend_profile.profile_photo.url}}" alt="lead foto">
+  </div>
+  <p class="info FullName">
+    {{ project.project_lead.extend_profile.first_name }} {{ project.project_lead.extend_profile.last_name }}
+  </p>
+  <p class="info JobTitle">
+    <i class="fas fa-star"></i>
+    {{ project.project_lead.extend_profile.job_title }} at {{ project.project_lead.extend_profile.company }}
+  </p>
+  <p class="info Place">
+    <i class="fas fa-map-marker-alt"></i>
+    {{ project.project_lead.extend_profile.city }}, {{ project.project_lead.extend_profile.country }}
+  </p>
+    <div class="postInfo">
+      <p><span>{{ project_count }}</span> Projects</p>
+    </div>
+
+    <div class="socialContainer">
+      {% if project.project_lead.extend_profile.linkedin_profile != "Unknown" %}
+      <button class="linkedin" onclick="window.open('{{ project.project_lead.extend_profile.linkedin_profile }}', '_blank')">
+        <i class="fab fa-linkedin"> </i>
+      </button>
+      {% endif %}
+      {% if project.project_lead.extend_profile.git_hub_profile != "Unknown" %}
+      <button class="github" onclick="window.open('{{ project.project_lead.extend_profile.git_hub_profile }}', '_blank')">
+        <i class="fab fa-github"> </i>
+      </button>
+      {% endif %}
+      <button class="phone">
+        <i class="fa fa-phone"> </i>
+      </button>
+    </div>
+
+    <button class="actionBtn" data-bs-dismiss="modal">Close profile</button>
+</div>
+<!--</div>-->
+{% endblock %}

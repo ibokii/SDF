@@ -7,7 +7,7 @@
 <div class="headBox">
 	<div class="cardHeader">
 		<h2>Projects:</h2>
-		<a href="#" data-bs-toggle="modal" data-bs-target="#createNewProject" class="btn">+ Create new project</a>
+		<button data-bs-toggle="modal" data-bs-target="#createNewProject" class="createProjectBtn" title="Create new project">+</button>
 	</div>
 	<div class="modal fade mdl" id="createNewProject" data-bs-backdrop="createNewProject" data-bs-keyboard="false" tabindex="-1"
 	     aria-labelledby="staticBackdropLabel" aria-hidden="false">
@@ -19,11 +19,11 @@
 				</div>
 				<div class="modal-body">
 					<form class="form" method="post">
-						<p>Note!</p>
+						<p>Note! To add more detailed information, use the Edit function in the list of your projects after creating them.</p>
 						{% csrf_token %}
 
 						{{ form|crispy }}
-						<div style><button type="submit" class="btn-success">Create</button></div>
+						<div style="display: flex; justify-content: center; margin-top: 10px"><button type="submit" class="createProjectBtn">Create</button></div>
 
 					</form>
 				</div>
@@ -41,34 +41,20 @@
 			<tr>
 				<td>Name</td>
 				<td>Type</td>
-				<td>Create date</td>
+				<td>Last update</td>
 				<td>Lead</td>
 				<td>Status</td>
 				<td>Setting</td>
 			</tr>
 			</thead>
+			<tbody hx-get="{% url 'projects_list' %}" hx-trigger="load, projectsListChanged from:body">
 
-
-			<tbody>
-			{% for p in projects %}
-				<tr>
-					<td><a href="/my-projects/{{p.id}}/board/">{{p.project_title}}</a></td>
-					<td>{{ p.project_type }}</td>
-					<td>{{ p.create_date }}</td>
-					<td>
-						<div style="display: inline-flex; justify-content: space-between">
-							<div class="lead">
-								<img src="{{p.project_lead.extend_profile.profile_photo.url }}" alt="avatar">
-							</div>
-							{{ p.project_lead.extend_profile.first_name }} {{ p.project_lead.extend_profile.last_name }}
-						</div>
-					</td>
-					<td><span class="status active">Active</span></td>
-					<td><a href="/my-projects/edit/{{ p.id }}" class="btnSetting">Edit</a></td>
-				</tr>
-			{% endfor %}
 			</tbody>
 		</table>
+		<div id="modal" class="modal fade" tabindex="-1">
+      <div id="dialog" class="modal-dialog modal-dialog-centered" hx-target="this">
+      </div>
+		</div>
 	</div>
 </div>
 {% endblock %}

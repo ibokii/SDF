@@ -10,6 +10,8 @@
     <link rel="stylesheet" type="text/css" href="/../static/styles/nav_bar.css">
     <link rel="stylesheet" type="text/css" href="/../static/styles/content.css">
     <link rel="stylesheet" type="text/css" href="/../static/styles/boards.css">
+    <link rel="stylesheet" type="text/css" href="../static/styles/profile_info.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'icons/favicon.ico' %}">
     <title>{% block title %}Home{% endblock title %}</title>
 </head>
@@ -20,7 +22,7 @@
 			<ul>
 				<li>
 					<a href="#">
-						<span class="icon"></span>
+						<span class="icon"><ion-icon name="logo-python"></ion-icon></span>
 						<span class="title">SDF</span>
 					</a>
 				</li>
@@ -60,10 +62,11 @@
 						<ion-icon name="search"></ion-icon>
 					</label>
 				</div>
-				<!-- userImg-->
+				<!-- user -->
 				<div class="user">
 					{% block user_photo %}<img src="{{ user.extend_profile.profile_photo.url }}" alt="user" onclick="dropMenu()"> {% endblock %}
 				</div>
+				<!-- user menu -->
 				<div class="subMenuWrap" id="subMenuId">
 					<div class="subMenu">
 						<div class="userInfo">
@@ -71,7 +74,7 @@
 							<h3>{{ user.extend_profile.first_name }}</h3>
 						</div>
 						<hr>
-						<a href="#" class="subMenuLink">
+						<a href="/edit-user-info/" class="subMenuLink">
 							<span class="icon"><ion-icon name="person-outline"></ion-icon></span>
 							<p>Edit Profile</p>
 							<span> > </span>
@@ -96,11 +99,11 @@
 			<div class="cardBox">
 				<div class="card">
 					<div>
-						<div class="numbers">0</div>
-						<div class="cardName">Dashboard in progress</div>
+						<div class="numbers">{{ projects }}</div>
+						<div class="cardName">Participation in projects</div>
 					</div>
 					<div class="iconBx">
-						<ion-icon name="eye-outline"></ion-icon>
+						<ion-icon name="people-circle-outline"></ion-icon>
 					</div>
 				</div>
 				<div class="card">
@@ -216,19 +219,19 @@
 						</tbody>
 					</table>
 				</div>
-				<!-- New Customer -->
-				<div class="recentCustomers">
+				<!-- Users -->
+				<div class="recentMembers">
 					<div class="cardHeader">
-						<h2>Users</h2>
+						<h2>Members</h2>
 						<a href="#" class="btn">View all</a>
 					</div>
 					<table>
+						{% for u in users %}
 						<tr>
-							<td ><div class="imgBx"><img src="/../static/img/bandera.png" alt="avatar"></div></td>
-							<td><h4>Stepan Bandera<br><span>Ukraine mother!</span></h4></td>
+							<td ><div class="imgBx"><img src="{{ u.extend_profile.profile_photo.url }}" alt="avatar"></div></td>
+							<td><h4>{{ u.extend_profile.first_name }} {{ u.extend_profile.last_name }}<br><span>{{ u.extend_profile.city }}</span></h4></td>
 						</tr>
-						<tr>
-
+						{% endfor %}
 					</table>
 				</div>
 			</div>
@@ -242,6 +245,8 @@
 	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 	<script src="/../static/js/bootstrap.min.js"></script>
 	<script src="/../static/js/jquery.min.js"></script>
+	<script src="/../static/js/htmx.min.js"></script>
+	<script src="/../static/js/dialog.js"></script>
 	<script>
 			// Dropdown menu
 			let subMenuId = document.getElementById('subMenuId');

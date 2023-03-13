@@ -1,0 +1,14 @@
+{% extends 'home.html' %}
+{% load crispy_forms_tags %}
+<link rel="stylesheet" href="../../static/styles/edit_user_info.css">
+{% block content %}
+<div style="display: flex; justify-content: space-around; align-content: flex-start" >
+	<div hx-get="{% url 'user_info' %}" hx-trigger="load"></div>
+	<div class="profileContainer">
+		<form method="post">
+			{% crispy form %}
+		</form>
+		<button class="actionBtn" type="submit">Submit</button>
+	</div>
+</div>
+{% endblock %}
