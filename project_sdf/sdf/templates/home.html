@@ -2,20 +2,22 @@
 {% load crispy_forms_tags %}
 {% load static %}
 <html lang="en">
+{% block head %}
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/../static/styles/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/../static/styles/nav_bar.css">
-    <link rel="stylesheet" type="text/css" href="/../static/styles/content.css">
-    <link rel="stylesheet" type="text/css" href="/../static/styles/boards.css">
-    <link rel="stylesheet" type="text/css" href="../static/styles/profile_info.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'icons/favicon.ico' %}">
-    <title>{% block title %}Home{% endblock title %}</title>
+	<link rel="stylesheet" type="text/css" href="/../static/styles/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/../static/styles/nav_bar.css">
+	<link rel="stylesheet" type="text/css" href="/../static/styles/content.css">
+	<link rel="stylesheet" type="text/css" href="/../static/styles/boards.css">
+	<link rel="stylesheet" type="text/css" href="../static/styles/profile_info.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+	<link rel="shortcut icon" type="image/x-icon" href="{% static 'icons/favicon.ico' %}">
+	{% block extrahead %}{% endblock %}
+	<title>{% block title %}Home{% endblock title %}</title>
 </head>
-
+{% endblock head %}
 <body>
 	<div class="sdfContainer">
 		<div class="navigation">
@@ -46,10 +48,7 @@
 				</li>
 			</ul>
 		</div>
-
-
 		<!-- Main -->
-
 		<div class="main">
 			<div class="topbar">
 				<div class="toggle">
@@ -64,13 +63,21 @@
 				</div>
 				<!-- user -->
 				<div class="user">
-					{% block user_photo %}<img src="{{ user.extend_profile.profile_photo.url }}" alt="user" onclick="dropMenu()"> {% endblock %}
+					{% if user.extend_profile.profile_photo %}
+            <img src="{{ user.extend_profile.profile_photo.url }}" alt="user" onclick="dropMenu()">
+          {% else %}
+            <img src="/../static/avatar.jpg" alt="default user image" onclick="dropMenu()">
+          {% endif %}
 				</div>
 				<!-- user menu -->
 				<div class="subMenuWrap" id="subMenuId">
 					<div class="subMenu">
 						<div class="userInfo">
-							<img src="{{ user.extend_profile.profile_photo.url }}" alt="image">
+							{% if user.extend_profile.profile_photo %}
+                <img src="{{ user.extend_profile.profile_photo.url }}" alt="user" onclick="dropMenu()">
+							{% else %}
+                <img src="/../static/avatar.jpg" alt="default user image" onclick="dropMenu()">
+              {% endif %}
 							<h3>{{ user.extend_profile.first_name }}</h3>
 						</div>
 						<hr>
@@ -99,20 +106,24 @@
 			<div class="cardBox">
 				<div class="card">
 					<div>
+						<div class="numbers">{{ user_projects }}</div>
+						{% if user_projects > 1%}
+						<div class="cardName">Projects created</div>
+						{% else %}
+						<div class="cardName">Project created</div>
+						{% endif %}
+					</div>
+					<div class="iconBx">
+						<ion-icon name="create-outline"></ion-icon>
+					</div>
+				</div>
+				<div class="card">
+					<div>
 						<div class="numbers">{{ projects }}</div>
 						<div class="cardName">Participation in projects</div>
 					</div>
 					<div class="iconBx">
 						<ion-icon name="people-circle-outline"></ion-icon>
-					</div>
-				</div>
-				<div class="card">
-					<div>
-						<div class="numbers">0</div>
-						<div class="cardName">Dashboard in progress</div>
-					</div>
-					<div class="iconBx">
-						<ion-icon name="eye-outline"></ion-icon>
 					</div>
 				</div>
 				<div class="card">
@@ -151,71 +162,12 @@
 						</tr>
 						</thead>
 						<tbody>
-
-						<tr>
-							<td>Logger in progress</td>
-							<td></td>
-							<td></td>
-							<td><span class="status delivered">In progress</span></td>
-						</tr>
-						<tr>
-							<td>Logger in progress</td>
-							<td></td>
-							<td></td>
-							<td><span class="status delivered">In progress</span></td>
-						</tr>
-						<tr>
-							<td>Logger in progress</td>
-							<td></td>
-							<td></td>
-							<td><span class="status delivered">In progress</span></td>
-						</tr>
-						<tr>
-							<td>Logger in progress</td>
-							<td></td>
-							<td></td>
-							<td><span class="status delivered">In progress</span></td>
-						</tr>
-						<tr>
-							<td>Logger in progress</td>
-							<td></td>
-							<td></td>
-							<td><span class="status delivered">In progress</span></td>
-						</tr>
-						<tr>
-							<td>Logger in progress</td>
-							<td></td>
-							<td></td>
-							<td><span class="status delivered">In progress</span></td>
-						</tr>
-						<tr>
-							<td>Logger in progress</td>
-							<td></td>
-							<td></td>
-							<td><span class="status delivered">In progress</span></td>
-						</tr>
-						<tr>
-							<td>Logger in progress</td>
-							<td></td>
-							<td></td>
-							<td><span class="status delivered">In progress</span></td>
-						</tr><tr>
-							<td>Logger in progress</td>
-							<td></td>
-							<td></td>
-							<td><span class="status delivered">In progress</span></td>
-						</tr><tr>
-							<td>Logger in progress</td>
-							<td></td>
-							<td></td>
-							<td><span class="status delivered">In progress</span></td>
-						</tr><tr>
-							<td>Logger in progress</td>
-							<td></td>
-							<td></td>
-							<td><span class="status delivered">In progress</span></td>
-						</tr>
-
+							<tr>
+								<td>Logger in progress</td>
+								<td></td>
+								<td></td>
+								<td><span class="status delivered">In progress</span></td>
+							</tr>
 						</tbody>
 					</table>
 				</div>

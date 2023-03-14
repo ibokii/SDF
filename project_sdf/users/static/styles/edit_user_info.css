@@ -1,18 +1,64 @@
-.profileContainer {
+.userDetails {
     position: relative;
-    background-color: #fff;
-    width: 500px;
-    padding: 100px 50px 40px;
-    border-radius: 20px;
-    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
+    min-height: 30px;
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    grid-gap: 30px;
+    padding: 20px 20px;
 }
 
-.imgContainer {
-    position: absolute;
+.editHeader {
+    display: flex;
+    justify-content: center;
+
+    padding-bottom: 20px;
+}
+.editHeader h4 {
+    font-weight: 600;
+    color: var(--blue);
+}
+
+.userDetails .userShortInfo {
+    position: relative;
+    display: grid;
+    justify-content: center;
+    align-content: start;
+    align-items: center;
+    height: 640px;
+    background: var(--white);
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+}
+
+.userDetails .userEditForm {
+    position: relative;
+    display: grid;
+    align-content: start;
+    height: 640px;
+    background: var(--white);
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+}
+.userDetails .userEditPassword {
+  position: relative;
+  display: grid;
+  align-content: start;
+  min-height: auto;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+}
+
+.userDetails .userShortInfo .userImg {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
     width: 180px;
     height: 180px;
     overflow: hidden;
@@ -20,127 +66,24 @@
     border: 1px solid black;
     border-radius: 50%;
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
-.imgContainer img {
+.userImg img {
     width: 100%;
     max-width: 100%;
+    object-fit: cover;
     transform: scale(1.1);
 }
 
-.info {
-    margin-bottom: 5px;
-}
-
-.info i {
-    margin-right: 8px;
-    font-size: 1.1em;
-}
-
-.Place {
-    margin-bottom: 30px;
-}
-
-.FullName {
-    font-size: 1.4em;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
-
-.postInfo {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    font-size: 1.1em;
-    letter-spacing: 0.5px;
-    margin-bottom: 30px;
-    text-align: center;
-}
-.postInfo span {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 4px;
-}
-
-.socialContainer {
-    width: 100%;
+.editBtnBx {
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
+    align-content: center;
 }
+/* media */
 
-.socialContainer i {
-    color: #fff;
-    transform: scale(1.2);
-}
-
-.socialContainer button {
-    border: none;
-
-    outline: none;
-    width: 45px;
-    height: 45px;
-    margin: 0 10px;
-    border-radius: 50%;
-    font-size: 1.2em;
-    cursor: pointer;
-    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
-    /*transition: transform 0.3s;*/
-}
-
-.socialContainer button:hover {
-    transform: scale(1.3);
-}
-
-.socialContainer button.linkedin {
-    background-color: #0a53be;
-}
-
-.socialContainer button.github {
-    background: linear-gradient(45deg, #33333388, #333333);
-}
-
-.socialContainer button.phone {
-    background-color: #0a53be;
-}
-
-.actionBtn {
-    outline: none;
-    cursor: pointer;
-    color: #fff;
-    background: linear-gradient(to right, #1db6ee, #450160);
-    border: none;
-    border-radius: 50px;
-    padding: 12px 20px;
-    width: 80%;
-    margin-top: 25px;
-    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
-    text-transform: uppercase;
-    font-size: 1em;
-    font-weight: bold;
-    letter-spacing: 2px;
-    transition: transform 0.3s, opacity 0.3s;
-}
-
-.actionBtn:hover {
-    transform: scale(1.05);
-    opacity: 0.9;
-}
-
-.formContainer {
-    position: relative;
-    background-color: #fff;
-    width: 500px;
-    padding: 100px 50px 40px;
-    border-radius: 20px;
-    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+@media (max-width: 1100px) {
+    .userDetails {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }

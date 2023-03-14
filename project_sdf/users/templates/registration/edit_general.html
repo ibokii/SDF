@@ -1,0 +1,24 @@
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="userShortInfo">
+	<div class="editHeader">
+		<h4>General information:</h4>
+	</div>
+	<div style="display: flex; justify-content: center; align-content: center">
+		<div class="userImg">
+			<img src="{{ user.extend_profile.profile_photo.url }}" alt="">
+		</div>
+	</div>
+	<div class="firstFormBox">
+		<form method="post" enctype="multipart/form-data" action="{{ request.path }}">
+			{% csrf_token %}
+			<div style="margin-bottom: 35px">
+			{{ form|crispy }}
+			</div>
+			<div class="editBtnBx">
+				<input type="submit" value="Save change" class="actionBtn">
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}

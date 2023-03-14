@@ -9,4 +9,6 @@ urlpatterns = [
 	path('add-new-user-info/', views.AddUserInfoView.as_view(), name='add_user_info'),
 	path('user-info/', views.user_info, name='user_info'),
 	path('edit-user-info/', views.edit_profile, name='edit_user_info'),
+	path('edit-user-info/edit-general', views.edit_general, name='edit_general'),
+	path('edit-user-info/edit-additional', views.edit_additional, name='edit_additional'),
 ]

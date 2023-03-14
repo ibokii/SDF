@@ -1,14 +1,30 @@
 {% extends 'home.html' %}
 {% load crispy_forms_tags %}
-<link rel="stylesheet" href="../../static/styles/edit_user_info.css">
+
+
+{% block extrahead %}<link rel="stylesheet" type="text/css" href="/../../static/styles/edit_user_info.css">{% endblock extrahead %}
+{% block title %}Edit user info{% endblock title %}
 {% block content %}
-<div style="display: flex; justify-content: space-around; align-content: flex-start" >
-	<div hx-get="{% url 'user_info' %}" hx-trigger="load"></div>
-	<div class="profileContainer">
-		<form method="post">
-			{% crispy form %}
+<div class="userDetails">
+  <div hx-get="{% url 'edit_general' %}" hx-trigger="load">
+		<!--inject edit_general.html-->
+  </div>
+	<div hx-get="{% url 'edit_additional' %}" hx-trigger="load">
+		<!--inject edit_additional.html-->
+  </div>
+	<div class="userEditForm">
+		<div class="editHeader">
+		  <h4>Change password:</h4>
+	  </div>
+		<form method="post" action="{{ request.path }}">
+			{% csrf_token %}
+			<div style="margin-bottom: 95px">
+			{{ password_form|crispy }}
+			</div>
+			<div class="editBtnBx">
+				<input type="submit" value="Save change" class="actionBtn">
+			</div>
 		</form>
-		<button class="actionBtn" type="submit">Submit</button>
-	</div>
 </div>
+
 {% endblock %}

@@ -13,11 +13,14 @@
 
 .imgContainer {
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 180px;
     height: 180px;
     overflow: hidden;
     object-fit: cover;
-    border: 1px solid black;
+    border: 2px solid rgb(59, 0, 66);
     border-radius: 50%;
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
     top: 0;
@@ -28,6 +31,7 @@
 .imgContainer img {
     width: 100%;
     max-width: 100%;
+    object-fit: cover;
     transform: scale(1.1);
 }
 
@@ -98,7 +102,7 @@
 }
 
 .socialContainer button.linkedin {
-    background-color: #0a53be;
+    background: linear-gradient(45deg, #679bf3, #0a53be);
 }
 
 .socialContainer button.github {
@@ -106,7 +110,7 @@
 }
 
 .socialContainer button.phone {
-    background-color: #0a53be;
+    background: linear-gradient(45deg, #96ef96, #017a01);
 }
 
 .actionBtn {

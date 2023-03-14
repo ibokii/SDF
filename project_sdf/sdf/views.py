@@ -21,7 +21,8 @@ class HomeView(LoginRequiredMixin, ListView):
 		user = self.request.user
 		context = super().get_context_data(**kwargs)
 		projects = Project.objects.filter(Q(project_lead=user) | Q(project_members=user)).distinct()
-		context['projects'] = projects.count()
+		context['user_projects'] = Project.objects.filter(project_lead=user).count()
+		context['projects'] = Project.objects.filter(project_members=user).count()
 		context['users'] = User.objects.filter(projects__in=projects).exclude(id=user.id).distinct()
 		context['tasks'] = Task.objects.all()
 		return context
@@ -35,7 +36,6 @@ class ProjectsListView(LoginRequiredMixin, ListView):
 	def get_queryset(self):
 		user = self.request.user
 		queryset = Project.objects.all()
-		# queryset = Project.objects.filter(Q(project_lead=user) | Q(project_members=user)).order_by('-create_date').distinct()
 		return queryset
 
 
