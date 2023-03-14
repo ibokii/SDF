@@ -239,12 +239,12 @@
 }
 /* Create project modal window */
 .mdl {
-  border-radius: 30px;
+  border-radius: 20px;
 }
 .modal-body form input,
 .modal-body form select,
 .modal-body form textarea {
-  border-radius: 30px;
+  border-radius: 20px;
 }
 .modal-body form textarea {
   max-height: 100px;
@@ -347,6 +347,7 @@
   border-radius: 50px;
   width: 150px;
   height: 50px;
+  margin: 0 20px;
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
   text-transform: uppercase;
   font-weight: bold;
@@ -355,6 +356,29 @@
 }
 
 .createProjectBtn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.deleteProjectBtn {
+  outline: none;
+  text-align: center;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(to top, #f34545, #880101);
+  border: none;
+  border-radius: 50px;
+  width: 150px;
+  height: 50px;
+  margin: 0 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.deleteProjectBtn:hover {
   transform: scale(1.05);
   opacity: 0.9;
 }

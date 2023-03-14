@@ -70,7 +70,8 @@ class BoarsView(LoginRequiredMixin, TemplateView):
 		user = self.request.user
 		context = super().get_context_data(**kwargs)
 		project = get_object_or_404(Project, id=project_id)
-		context['projects'] = [project]
+		context['projects'] = project
+		print(context)
 		context['categories'] = Category.objects.all()
 		context['tasks'] = Task.objects.filter(project=project)
 		return context

@@ -61,6 +61,12 @@ class Task(models.Model):
 		('Bug', 'Bug'),
 		('Feature', 'Feature')
 	), default=None)
+	task_priority = models.CharField(max_length=50, verbose_name='Priority', null=True, choices=(
+		('Low', 'Low'),
+		('Medium', 'Medium'),
+		('High', 'High'),
+		('URGENT', 'URGENT')
+	), default=None)
 	task_category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, null=True, blank=True, verbose_name='Category')
 	project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='tasks')
 	task_url = models.URLField(verbose_name='URL', blank=True)

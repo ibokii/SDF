@@ -6,9 +6,15 @@
 		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	</div>
 	<div class="modal-body">
-		<form hx-post="{{ request.path }}" method="post">
+		<form hx-post="{{ request.path }}" method="post" class="form">
 			{% csrf_token %}
-			{% crispy form %}
+			{{ form|crispy }}
+
+			<div style="display: flex; justify-content: center; margin-top: 10px">
+				<input type="submit" name="submit" value="Save" class="createProjectBtn" id="sumit-id-submit">
+				<input type="button" name="delete" value="Delete" class="deleteProjectBtn" id="button-id-delete"
+				       onclick="window.location.href='/my-projects/edit/delete-project/{{ form.instance.pk }}'">
+			</div>
 		</form>
 	</div>
 </div>

@@ -3,8 +3,8 @@
 {% block content %}
 <div class="headBox">
   <div class="cardHeader">
-    <h2>Project boards:</h2>
-    <a href="#" data-bs-toggle="modal" data-bs-target="#createNew" class="btn">+ Create new</a>
+    <h2>{{ projects.project_title }} board:</h2>
+    <button data-bs-toggle="modal" data-bs-target="#createNew" class="createProjectBtn">+</button>
   </div>
   <div class="modal fade" id="createNew" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -25,20 +25,81 @@
   </div>
 </div>
 <div class="boardContainer">
-  <div class="board">
-    {% for c in categories %}
+  <div class="board">{% for c in categories %}
     <div class="categoryBoard" id="category{{ c.id }}">
-      <p>{{ c.category_title }}</p>
+      <div class="cardHeader">
+        <p>{{ c.category_title }}</p>
+      </div>
+      <div class="taskField">
+        {% for t in tasks %}
+          {% if t.task_category.id == c.id %}
+        <div class="card task">
+          {% if t.task_type|lower == "bug" %}
+          <div class="cardHead" style="background: linear-gradient(to right, #f34249, #7c0000)">
+            <h3>{{t.task_type }}</h3>
+          </div>
+          {% elif t.task_type|lower == "story" %}
+          <div class="cardHead" style="background: linear-gradient(to right, #71d52e, #029602)">
+            <h3>{{t.task_type }}</h3>
+          </div>
+          {% elif t.task_type|lower == "feature" %}
+          <div class="cardHead" style="background: linear-gradient(to right, #efd66e, #968c00)">
+            <h3>{{t.task_type }}</h3>
+          </div>
+          {% else %}
+          <div class="cardHead">
+            <h3>{{t.task_type }}</h3>
+          </div>
+          {% endif %}
+          <div class="cardBody">
+            {% if t.task_priority|lower == "urgent"%}
+            <p class="cardPriority" style="background-color: red"> {{t.task_priority }}</p>
+            {% elif t.task_priority|lower == "high"%}
+            <p class="cardPriority" style="background-color: darkorange"> {{t.task_priority }}</p>
+            {% elif t.task_priority|lower == "medium"%}
+            <p class="cardPriority" style="background-color: green"> {{t.task_priority }}</p>
+            {% elif t.task_priority|lower == "low"%}
+            <p class="cardPriority" style="background-color: #0a53be"> {{t.task_priority }}</p>
+            {% endif %}
+            <h2 class="cardDueDate" id="DueDate{{ t.id }}">{{ t.due_date }}</h2>
+            <p class="cardSummary"> Summary: <br>{{ t.task_summary }} </p>
+          </div>
+          {% if t.assigned_to.id == user.id %}
+          <div>
+            <h2 class="cardAssignedTo">
+              TO YOU
+            </h2>
+          </div>
+          {% else %}
+          <div>
+            <h2 class="cardAssignedTo">
+              {{ t.assigned_to.extend_profile.first_name }}
+              {{ t.assigned_to.extend_profile.last_name }}
+            </h2>
+          </div>
+          {% endif %}
+          {% if t.task_status|lower == "to do" %}
+          <div class="cardStatus" style="background-color: blue">
+              <span>{{ t.task_status }}</span>
+            </div>
+          {% elif t.task_status|lower == "in progress" %}
+          <div class="cardStatus" style="background-color: orange">
+              <span>{{ t.task_status }}</span>
+            </div>
+          {% elif t.task_status|lower == "done" %}
+          <div class="cardStatus" style="background-color: green">
+              <span>{{ t.task_status }}</span>
+            </div>
+          {% endif %}
+          <div class="cardFooter">
+            <a href="#">View details</a>
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
     </div>
     {% endfor %}
-  </div>
-  <div class="navigator">
-
-    <div class="navBoard">
-      {% for c in categories %}
-      <div class="navButton btn-success"><a href="#category{{ c.id }}">{{ c.category_title}}</a></div>
-      {% endfor %}
-    </div>
 
   </div>
 </div>

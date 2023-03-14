@@ -1,9 +1,8 @@
 .headBox {
   position: relative;
   width: 100%;
-  padding: 10px 30px;
+  padding: 10px 0 0 30px;
   display: grid;
-  grid-gap: 30px;
 }
 .cardHeader {
   display: flex;
@@ -13,162 +12,166 @@
 .boardContainer {
   display: grid;
   justify-content: start;
-  grid-template-columns: 5fr 1fr;
   width: 100%;
-  min-height: 100vh;
+  margin-right: 20px;
+  height: auto;
 }
 .boardContainer .board {
   position: relative;
   display: grid;
-  min-height: 100vh;
+  width: 100%;
+  height: auto;
 }
 .boardContainer .board .categoryBoard {
   position: relative;
   display: grid;
+  width: auto;
   background: var(--white);
-  margin: 0 20px 20px 20px;
+  margin: 20px 20px;
   padding: 20px;
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
   border-radius: 20px;
 }
-.navigator {
-  position: relative;
-  width: 100%;
-  min-height: auto;
-}
-.navBoard {
-  position: sticky;
-  display: grid;
-  align-content: space-between;
-  height: 500px;
-  width: 150px;
-  background: var(--white);
-  margin: 0 20px;
-  padding: 20px;
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
-}
-.navButton {
-  position: relative;
-  width: 100%;
-  height: 40px;
-  text-align: center;
-  background: var(--white);
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
-}
-.boardContainer .board .categoryBoard {
-  position: relative;
-  display: grid;
-  min-height: 600px;
-  background: var(--white);
-  margin: 0 30px 30px;
-  padding: 20px;
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.boardHeader {
+.categoryBoard .cardHeader {
   display: flex;
-  padding: 10px;
   justify-content: space-between;
-  align-items: flex-start;
+}
+.cardHeader p {
+  font-weight: 600;
+  color: var(--blue);
 }
 
-.boardField {
-  position: relative;
-  width: 100%;
-  padding: 23px;
-  display: grid;
-  grid-template-columns: repeat(7, 400px);
-  overflow-x: auto;
-  grid-gap: 30px;
-  scrollbar-width: thin;
-}
-.boardField .board {
-  position: relative;
-  display: grid;
-  height: 600px;
-  background: var(--white);
-  padding: 20px;
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
-  border-radius: 20px;
-}
-
-.boardField .board .taskBoard {
-  position: relative;
-  display: table-cell;
-  background: rgba(162, 160, 163, 0.3);
-  height: 450px;
-  padding: 10px;
-  box-sizing: border-box;
-  vertical-align: top;
-  overflow-y: scroll;
-  /*box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);*/
-  border-radius: 20px;
-}
-
-/* Task style */
-.boardField .board .taskBoard .task {
-  position: relative;
-  min-height: 150px;
-  background: var(--white);
+.taskField {
   display: flex;
-  padding: 10px;
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  flex-wrap: wrap;
+}
+
+.taskField > * {
+  width: calc(20% - 10px);
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.card {
+  width: 215px;
+  height: auto;
+  display: grid;
+  justify-content: space-between;
+  margin: 10px 5px;
+  background-color: #fff;
   border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
 }
-.boardField .board .taskBoard::-webkit-scrollbar {
-  width: 0;
-  background: transparent;
+.card:hover {
+  transform: scale(1.2);
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.9);
+  z-index: 999;
 }
-.boardField .board .taskBoard .task .grabber {
-  width: 5px;
-  left: 5px;
-  top: 5px;
-  bottom: 5px;
+.cardHead {
+  height: 40px;
+  background: linear-gradient(to right, #43aaf5, #020994);
+  text-align: center;
+  color: white;
+}
+
+.cardHead h3 {
+  margin: 0;
   height: auto;
 }
-.boardField .board .taskBoard .task .summary {
-  width: 280px;
-  height: auto;
+
+.cardBody {
+  width: 215px;
+  height: 200px;
   padding: 5px;
-  overflow-wrap: break-word;
-  text-overflow: ellipsis;
+  text-align: center;
 }
-.boardField .board .taskBoard .task .iconBx {
-  font-size: 1.5em;
-  color: black;
-  bottom: 0;
-  left: 0;
+
+.cardPriority {
+  padding: 2px 4px;
+  background: #8de02c;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 10px 30px;
+  text-align: center;
 }
-.boardField .board .taskBoard .task .date {
-  position: relative;
-  padding: 5px;
+
+.cardDueDate {
+  width: 100%;
+  font-size: 16px;
+  margin: 10px 0;
 }
-.boardField .board .taskBoard .task .status {
-  position: relative;
-  padding: 5px;
+
+.cardAssignedTo {
+  width: 100%;
+  font-size: 16px;
+  margin: 15px 0;
+  text-align: center;
 }
+
+. {
+  font-size: 12px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.cardStatus {
+  padding: 2px 4px;
+  background: #8de02c;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 10px 30px;
+  text-align: center;
+}
+
+
+.cardFooter {
+  width: 100%;
+  /*margin-top: 10px;*/
+  text-align: center;
+  background-color: #0a53be;
+}
+
+.cardFooter a {
+  color: #fff;
+  display: block;
+  padding: 16px;
+  text-decoration: none;
+
+}
+
+/*.task .grabber {*/
+/*  width: 5px;*/
+/*  left: 5px;*/
+/*  top: 5px;*/
+/*  bottom: 5px;*/
+/*  height: auto;*/
+/*}*/
+/* .task .summary {*/
+/*  width: 280px;*/
+/*  height: auto;*/
+/*  padding: 5px;*/
+/*  overflow-wrap: break-word;*/
+/*  text-overflow: ellipsis;*/
+/*}*/
+/*.task .iconBx {*/
+/*  font-size: 1.5em;*/
+/*  color: black;*/
+/*  bottom: 0;*/
+/*  left: 0;*/
+/*}*/
+/*.task .date {*/
+/*  position: relative;*/
+/*  padding: 5px;*/
+/*}*/
+/*.task .status {*/
+/*  position: relative;*/
+/*  padding: 5px;*/
+/*}*/

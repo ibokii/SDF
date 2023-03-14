@@ -1,10 +1,11 @@
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Button
+from crispy_forms.helper import FormHelper  # type: ignore
+from crispy_forms.layout import Submit, Button  # type: ignore
 from django import forms  # type: ignore
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm  # type: ignore
 from django.contrib.auth.models import User  # type: ignore
-from django.urls import reverse
-
+from django.core.exceptions import ValidationError  # type: ignore
+from django.core.validators import URLValidator  # type: ignore
+from django.urls import reverse  # type: ignore
 from .models import ExtendUser
 
 
@@ -124,3 +125,13 @@ class EditUserInfoForm2(forms.ModelForm):
             'linkedin_profile': forms.TextInput(attrs={'class': 'form-control'}),
             'git_hub_profile': forms.TextInput(attrs={'class': 'form-control'}),
         }
+
+    # def clean_git_hub_profile(self):
+    #     git_hub_profile = self.cleaned_data.get('git_hub_profile')
+    #     if git_hub_profile:
+    #         validate_github_profile = URLValidator(schemes=['http', 'https'])
+    #         try:
+    #             validate_github_profile(git_hub_profile)
+    #         except ValidationError:
+    #             raise forms.ValidationError("Please enter a valid GitHub profile URL.")
+    #     return git_hub_profile

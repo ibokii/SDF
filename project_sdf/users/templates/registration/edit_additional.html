@@ -4,7 +4,7 @@
   <div class="editHeader">
     <h4>Additional information:</h4>
   </div>
-  <form method="post" action="{{ request.path }}">
+  <form id="editForm" method="post" action="{{ request.path }}">
     {% csrf_token %}
     <div>
       <div style="margin-bottom: 10px">

@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="/../static/styles/nav_bar.css">
 	<link rel="stylesheet" type="text/css" href="/../static/styles/content.css">
 	<link rel="stylesheet" type="text/css" href="/../static/styles/boards.css">
-	<link rel="stylesheet" type="text/css" href="../static/styles/profile_info.css">
+	<link rel="stylesheet" type="text/css" href="/../static/styles/profile_info.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 	<link rel="shortcut icon" type="image/x-icon" href="{% static 'icons/favicon.ico' %}">
 	{% block extrahead %}{% endblock %}
@@ -225,5 +225,19 @@
         }
         list.forEach((item) =>
         item.addEventListener('mouseover', activeLink));
+
+
+			const dueDateElements = document.querySelectorAll('.cardDueDate');
+
+			dueDateElements.forEach(element => {
+        const dueDate = new Date(element.innerText);
+        const now = new Date();
+        const diffInMs = dueDate - now;
+        const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
+
+        if (diffInDays < 1) {
+          element.style.color = 'red';
+        }
+			});
 	</script>
 </body>

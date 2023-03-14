@@ -3,7 +3,8 @@ from django.contrib.auth.forms import PasswordChangeForm  # type: ignore
 from django.http import HttpResponseRedirect  # type: ignore
 from django.shortcuts import render, redirect, get_object_or_404  # type: ignore
 from django.views import View  # type: ignore
-from .forms import CreateAccountForm, EmailAuthenticationForm, AddUserInformationForm, EditUserInfoForm1, EditUserInfoForm2  # type: ignore
+from .forms import CreateAccountForm, EmailAuthenticationForm, \
+    AddUserInformationForm, EditUserInfoForm1, EditUserInfoForm2  # type: ignore
 from django.contrib.auth.views import LoginView  # type: ignore
 from django.contrib.auth import logout  # type: ignore
 
@@ -77,6 +78,8 @@ def edit_general(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/edit-user-info/')
+        else:
+            return HttpResponseRedirect('/edit-user-info/')
     else:
         form = EditUserInfoForm1(instance=extend_user)
     return render(request, 'registration/edit_general.html', {'form': form})
@@ -90,8 +93,11 @@ def edit_additional(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/edit-user-info/')
+        else:
+            return HttpResponseRedirect('/edit-user-info/')
     else:
         form = EditUserInfoForm2(instance=extend_user)
+
     return render(request, 'registration/edit_additional.html', {'form': form})
 
 
