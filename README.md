@@ -6,3 +6,5 @@
 ### What I use for realization: Python, Django, PostgreSQL, HTML & CSS, Bootstrap, HTMX, JavaScript.
 
 ### What was implemented: home page, registration and authorization with email and password validation, profile editing and password change page, home page with small analytics about user projects, project list page (plus creating a new project, editing or deleting existing ones), task board page.
+### Screnshots:
+![start page](/screenshots/s1.jpg)
