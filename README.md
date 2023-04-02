@@ -16,3 +16,7 @@
 ![user preview](/screenshots/s7.jpg)
 ![project board page](/screenshots/s8.jpg)
 ![edit user info page](/screenshots/s9.jpg)
+
+### Work on the project is ongoing, as well as the addition of this file.
+
+## Glory to Ukraine!
