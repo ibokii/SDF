@@ -1,7 +1,7 @@
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from django import forms  # type: ignore
-from .models import Project
+from .models import Project, Task
 
 
 class CreateProjectForm(forms.ModelForm):
@@ -43,4 +43,23 @@ class EditProjectForm(forms.ModelForm):
 			'project_type': forms.Select(attrs={'class': 'form-control'}),
 			'project_description': forms.Textarea(attrs={'class': 'form-control'}),
 			'project_members': forms.SelectMultiple(attrs={'class': 'form-control'}),
+		}
+
+
+class TaskForm(forms.ModelForm):
+	class Meta:
+		model = Task
+		fields = '__all__'
+		widgets = {
+			'task_summary': forms.TextInput(attrs={'class': 'form-control'}),
+			'task_status': forms.Select(attrs={'class': 'form-control'}),
+			'task_type': forms.Select(attrs={'class': 'form-control'}),
+			'task_priority': forms.Select(attrs={'class': 'form-control'}),
+			'task_category': forms.Select(attrs={'class': 'form-control'}),
+			'project': forms.Select(attrs={'class': 'form-control'}),
+			'task_url': forms.URLInput(attrs={'class': 'form-control'}),
+			'task_description': forms.Textarea(attrs={'class': 'form-control'}),
+			'files': forms.ClearableFileInput(attrs={'class': 'form-control-file'}),
+			'due_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+			'assigned_to': forms.Select(attrs={'class': 'form-control'}),
 		}

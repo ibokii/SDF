@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model  # type: ignore
 from django.contrib.auth.models import User  # type: ignore
-from .forms import CreateProjectForm, EditProjectForm
+from .forms import CreateProjectForm, EditProjectForm, TaskForm
 from django.db.models import Q  # type: ignore
 from django.http import HttpResponseRedirect, HttpResponse  # type: ignore
 from django.shortcuts import render, get_object_or_404  # type: ignore
@@ -24,7 +24,7 @@ class HomeView(LoginRequiredMixin, ListView):
 		context['user_projects'] = Project.objects.filter(project_lead=user).count()
 		context['projects'] = Project.objects.filter(project_members=user).count()
 		context['users'] = User.objects.filter(projects__in=projects).exclude(id=user.id).distinct()
-		context['tasks'] = Task.objects.all()
+		context['tasks'] = Task.objects.filter(assigned_to=user).count()
 		return context
 
 
@@ -36,6 +36,7 @@ class ProjectsListView(LoginRequiredMixin, ListView):
 	def get_queryset(self):
 		user = self.request.user
 		queryset = Project.objects.all()
+		# queryset = Project.objects.filter(Q(project_lead=user) | Q(project_members=user)).distinct()
 		return queryset
 
 
@@ -75,6 +76,20 @@ class BoarsView(LoginRequiredMixin, TemplateView):
 		context['categories'] = Category.objects.all()
 		context['tasks'] = Task.objects.filter(project=project)
 		return context
+
+
+def create_task(request):
+	if request.method == 'POST':
+		form = TaskForm(request.POST)
+		if form.is_valid():
+			task = form.save(commit=False)
+			task.task_creator = request.user
+			task.project = request.project
+			task.save()
+			return HttpResponseRedirect('')
+	else:
+		form = TaskForm()
+	return render(request, 'create_task.html', {'form': form})
 
 
 def base(request):

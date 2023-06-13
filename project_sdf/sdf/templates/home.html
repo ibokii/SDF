@@ -104,7 +104,7 @@
 			{% block content %}
 
 			<div class="cardBox">
-				<div class="card">
+				<div class="cardB">
 					<div>
 						<div class="numbers">{{ user_projects }}</div>
 						{% if user_projects > 1%}
@@ -117,7 +117,7 @@
 						<ion-icon name="create-outline"></ion-icon>
 					</div>
 				</div>
-				<div class="card">
+				<div class="cardB">
 					<div>
 						<div class="numbers">{{ projects }}</div>
 						<div class="cardName">Participation in projects</div>
@@ -126,16 +126,16 @@
 						<ion-icon name="people-circle-outline"></ion-icon>
 					</div>
 				</div>
-				<div class="card">
+				<div class="cardB">
 					<div>
-						<div class="numbers">0</div>
-						<div class="cardName">Dashboard in progress</div>
+						<div class="numbers">{{ tasks }}</div>
+						<div class="cardName">Tasks assigned to you</div>
 					</div>
 					<div class="iconBx">
-						<ion-icon name="eye-outline"></ion-icon>
+						<ion-icon name="pricetag-outline"></ion-icon>
 					</div>
 				</div>
-				<div class="card">
+				<div class="cardB">
 					<div>
 						<div class="numbers">0</div>
 						<div class="cardName">Dashboard in progress</div>
@@ -226,7 +226,7 @@
         list.forEach((item) =>
         item.addEventListener('mouseover', activeLink));
 
-
+			// Date check
 			const dueDateElements = document.querySelectorAll('.cardDueDate');
 
 			dueDateElements.forEach(element => {

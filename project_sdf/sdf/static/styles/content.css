@@ -7,7 +7,7 @@
   grid-template-columns: repeat(4,1fr);
   grid-gap: 30px;
 }
-.cardBox .card {
+.cardBox .cardB {
   position: relative;
   background-color: var(--white);
   padding: 30px;
@@ -17,28 +17,28 @@
   cursor: pointer;
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
 }
-.cardBox .card .numbers {
+.cardBox .cardB .numbers {
   position: relative;
   font-weight: 500;
   font-size: 2.5em;
   color: var(--blue);
 }
-.cardBox .card .cardName {
+.cardBox .cardB .cardName {
   color: var(--black2);
   font-size: 1.1em;
   margin-top: 5px;
 }
-.cardBox .card .iconBx {
+.cardBox .cardB .iconBx {
   font-size: 1.5em;
   color: var(--black2)
 }
-.cardBox .card:hover {
+.cardBox .cardB:hover {
   background: linear-gradient(to top, #1db6ee, #450160);
   transform: scale(1.1);
 }
-.cardBox .card:hover .numbers,
-.cardBox .card:hover .cardName,
-.cardBox .card:hover .iconBx {
+.cardBox .cardB:hover .numbers,
+.cardBox .cardB:hover .cardName,
+.cardBox .cardB:hover .iconBx {
   color: var(--white);
 }
 .details {
